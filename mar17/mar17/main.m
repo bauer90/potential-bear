@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PlayingCardDeck.h"
 
 int main(int argc, const char * argv[])
 {
@@ -15,7 +16,7 @@ int main(int argc, const char * argv[])
         
         // insert code here...
         NSLog(@"Hello, World!");
-        
+        PlayingCardDeck *deck = [[PlayingCardDeck alloc] init];
         
     }
     return 0;
