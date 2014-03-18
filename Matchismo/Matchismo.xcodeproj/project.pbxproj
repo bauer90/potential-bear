@@ -112,8 +112,6 @@
 		E198DA0618D8A4CD00116796 /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
-				E198DA0F18D8A4CE00116796 /* AppDelegate.h */,
-				E198DA1018D8A4CE00116796 /* AppDelegate.m */,
 				E198DA1218D8A4CE00116796 /* Main.storyboard */,
 				E198DA1518D8A4CE00116796 /* ViewController.h */,
 				E198DA1618D8A4CE00116796 /* ViewController.m */,
@@ -126,6 +124,8 @@
 		E198DA0718D8A4CD00116796 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E198DA0F18D8A4CE00116796 /* AppDelegate.h */,
+				E198DA1018D8A4CE00116796 /* AppDelegate.m */,
 				E198DA0818D8A4CD00116796 /* Matchismo-Info.plist */,
 				E198DA0918D8A4CD00116796 /* InfoPlist.strings */,
 				E198DA0C18D8A4CD00116796 /* main.m */,
