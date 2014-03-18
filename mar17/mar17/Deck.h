@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Erhan Hu. All rights reserved.
 //
 
-// try out commit on mba
 #import <Foundation/Foundation.h>
 #import "Card.h"
 
