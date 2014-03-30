@@ -33,14 +33,17 @@
         [sender setBackgroundImage:[UIImage imageNamed:@"cardback"]
                           forState:UIControlStateNormal];
         [sender setTitle:@"" forState:UIControlStateNormal];
+        self.flipCount++;
     } else {
-        // draw a random card from deck -
-        Card *card = [self.deck drawRandomCard];
-        [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
+        if (![self.deck isEmpty]) {
+            // draw a random card from deck -
+            Card *card = [self.deck drawRandomCard];
+            [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
                           forState:UIControlStateNormal];
-        [sender setTitle:card.contents forState:UIControlStateNormal];
+            [sender setTitle:card.contents forState:UIControlStateNormal];
+            self.flipCount++;
+        }
     }
-    self.flipCount++;
 }
 
 - (Deck *)deck

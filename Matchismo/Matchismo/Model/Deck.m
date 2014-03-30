@@ -16,6 +16,11 @@
 
 @implementation Deck
 
+- (BOOL)isEmpty
+{
+    return [self.cards count] == 0;
+}
+
 - (NSMutableArray *)cards
 {
     if (!_cards) {
