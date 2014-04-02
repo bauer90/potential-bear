@@ -44,8 +44,8 @@ static const int MATCH_BONUS = 4;
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    if (!card.isMatched) {
-        if (card.isChosen) {
+    if (!card.isMatched) { // matched cards are "out of game"
+        if (card.isChosen) { // toggle between Chosen / !Chosen
             card.chosen = NO;
         } else {
             for (Card *otherCard in self.cards) {

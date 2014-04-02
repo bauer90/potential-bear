@@ -20,6 +20,7 @@
 
 - (Card *)cardAtIndex:(NSUInteger)index;
 
+//there is no public setter for this property (readonly) -
 @property (nonatomic, readonly) NSInteger score;
 
 @end
