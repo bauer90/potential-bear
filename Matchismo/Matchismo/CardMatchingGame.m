@@ -25,8 +25,7 @@ static const int COST_TO_CHOOSE = 1;
 }
 
 // designated initializer
-- (instancetype)initWithCardCount:(NSUInteger)count
-                        usingDeck:(Deck *)deck
+- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
     self = [super init]; //calling NSObject's initializer
     if (self) { // error checking for mem alloc failure
@@ -53,11 +52,11 @@ static const int COST_TO_CHOOSE = 1;
             for (Card *otherCard in self.cards) {
                 if (otherCard.isChosen && !otherCard.isMatched) {
                     int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
+                    if (matchScore) { // matchScore > 0
                         self.score += matchScore * MATCH_BONUS;
-                        card.matched = YES;
-                        otherCard.matched = YES;
-                    } else {
+                        card.matched = YES; // mark both cards to -
+                        otherCard.matched = YES; // be "out of game"
+                    } else { // no match
                         self.score -= MISMATCH_PENALTY;
                         otherCard.chosen = NO;
                     }

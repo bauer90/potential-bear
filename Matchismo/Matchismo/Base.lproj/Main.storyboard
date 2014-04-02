@@ -7,6 +7,7 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rxd-CG-Gst">
-                                <rect key="frame" x="20" y="20" width="82" height="117"/>
+                                <rect key="frame" x="20" y="37" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -28,15 +29,8 @@
                                     <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1zR-kg-zph"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flips: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ov-ZN-QBF">
-                                <rect key="frame" x="119" y="350" width="101" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiR-JC-Iqm">
-                                <rect key="frame" x="119" y="20" width="82" height="117"/>
+                                <rect key="frame" x="119" y="37" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -48,7 +42,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GE-6f-L5v">
-                                <rect key="frame" x="218" y="20" width="82" height="117"/>
+                                <rect key="frame" x="218" y="37" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -60,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0a-fN-Pm3">
-                                <rect key="frame" x="20" y="150" width="82" height="117"/>
+                                <rect key="frame" x="20" y="165" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -72,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxY-m0-plI">
-                                <rect key="frame" x="20" y="282" width="82" height="117"/>
+                                <rect key="frame" x="20" y="290" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -84,7 +78,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5G-yW-ioO">
-                                <rect key="frame" x="119" y="282" width="82" height="117"/>
+                                <rect key="frame" x="119" y="290" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -96,7 +90,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQw-xZ-6gq">
-                                <rect key="frame" x="218" y="282" width="82" height="117"/>
+                                <rect key="frame" x="218" y="290" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -108,7 +102,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKH-aY-2tn">
-                                <rect key="frame" x="119" y="150" width="82" height="117"/>
+                                <rect key="frame" x="119" y="165" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -120,7 +114,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ses-mp-IwZ">
-                                <rect key="frame" x="218" y="150" width="82" height="117"/>
+                                <rect key="frame" x="218" y="165" width="82" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" backgroundImage="cardback">
@@ -167,15 +161,34 @@
                                     <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0lg-ib-JOz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-Jr-fhe">
+                                <rect key="frame" x="20" y="-6" width="103" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cyan="1" magenta="0.022766470909118652" yellow="0.99026477336883545" black="0.080247223377227783" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                     </view>
                     <connections>
-                        <outlet property="flipsLabel" destination="1Ov-ZN-QBF" id="ZYQ-qb-ZDf"/>
+                        <outlet property="scoreLabel" destination="vtr-Jr-fhe" id="XnK-o2-IX7"/>
+                        <outletCollection property="cardButtons" destination="ywb-6H-Ebb" id="9Qs-nm-gL3"/>
+                        <outletCollection property="cardButtons" destination="sNR-La-B38" id="P5w-bO-1gq"/>
+                        <outletCollection property="cardButtons" destination="8yX-OI-rM4" id="u8F-GJ-j48"/>
+                        <outletCollection property="cardButtons" destination="LxY-m0-plI" id="vVU-Cg-fUV"/>
+                        <outletCollection property="cardButtons" destination="Q5G-yW-ioO" id="ge8-7J-DdD"/>
+                        <outletCollection property="cardButtons" destination="JQw-xZ-6gq" id="DzR-Lf-QjW"/>
+                        <outletCollection property="cardButtons" destination="j0a-fN-Pm3" id="2GN-CU-ykk"/>
+                        <outletCollection property="cardButtons" destination="vKH-aY-2tn" id="zdQ-2w-lcG"/>
+                        <outletCollection property="cardButtons" destination="ses-mp-IwZ" id="6hP-fL-jyo"/>
+                        <outletCollection property="cardButtons" destination="Rxd-CG-Gst" id="2pb-lx-A0L"/>
+                        <outletCollection property="cardButtons" destination="hiR-JC-Iqm" id="mOW-cg-9Gx"/>
+                        <outletCollection property="cardButtons" destination="2GE-6f-L5v" id="dsk-JZ-3ED"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="182" y="204"/>
         </scene>
     </scenes>
     <resources>

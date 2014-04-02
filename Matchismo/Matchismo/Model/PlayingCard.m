@@ -13,7 +13,8 @@
 
 @synthesize suit = _suit;
 
-// overriding match: in Card, but need no re-declaration
+// overriding match: of Card, but need no re-declaration
+// 4 pt for rank match and 1 pt for suit match.
 - (int)match:(NSArray *)otherCards
 {
     int score = 0;
