@@ -17,22 +17,24 @@
 
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
+static const int COST_TO_CHOOSE = 1;
 - (NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
 }
 
+// designated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count
                         usingDeck:(Deck *)deck
 {
     self = [super init]; //calling NSObject's initializer
-    if (self) {
+    if (self) { // error checking for mem alloc failure
         for (int i = 0; i < count; i++) {
             Card *card = [deck drawRandomCard];
             if (card) {
                 [self.cards addObject:card];
-            } else {
+            } else { // addObject:nil will cause error
                 self = nil;
                 break;
             }
@@ -51,13 +53,18 @@ static const int MATCH_BONUS = 4;
             for (Card *otherCard in self.cards) {
                 if (otherCard.isChosen && !otherCard.isMatched) {
                     int matchScore = [card match:@[otherCard]];
-                    self.score += matchScore * MATCH_BONUS;
-                } else {
-                    self.score -= MISMATCH_PENALTY;
-                    otherCard.chosen = NO;
+                    if (matchScore) {
+                        self.score += matchScore * MATCH_BONUS;
+                        card.matched = YES;
+                        otherCard.matched = YES;
+                    } else {
+                        self.score -= MISMATCH_PENALTY;
+                        otherCard.chosen = NO;
+                    }
+                    break;
                 }
             }
-            
+            self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
         }
     }
