@@ -15,20 +15,40 @@
 
 // overriding match: of Card, but need no re-declaration
 // 4 pt for rank match and 1 pt for suit match.
+// updated for hw2 (otherCards can have 2 cards)
 - (int)match:(NSArray *)otherCards
 {
     int score = 0;
-    if ([otherCards count] == 1) {
-        id card = [otherCards firstObject];
-        // test if [otherCards firstObeject] is in fact of type PlayingCard
-        // using isKindOfClass:.
-        if ([card isKindOfClass:[PlayingCard class]]) {
-            PlayingCard *otherCard = (PlayingCard *)card;
-            if (otherCard.rank == self.rank) {
-                score = 4;
-            } else if ([otherCard.suit isEqualToString:self.suit]) {
-                score = 1;
+    switch ([otherCards count]) {
+        case 1: {
+            id card = [otherCards firstObject];
+            if ([card isKindOfClass:[PlayingCard class]]) {
+                PlayingCard *otherCard = (PlayingCard *)card;
+                if (otherCard.rank == self.rank) {
+                    score = 8;
+                } else if ([otherCard.suit isEqualToString:self.suit]) {
+                    score = 2;
+                }
             }
+            break;
+        }
+        case 2: {
+            id _firstCard = [otherCards firstObject];
+            id _secondCard = [otherCards lastObject];
+            if ([_firstCard isKindOfClass:[PlayingCard class]] && [_secondCard isKindOfClass:[PlayingCard class]]) {
+                PlayingCard *firstCard = (PlayingCard *)_firstCard;
+                PlayingCard *secondCard = (PlayingCard *)_secondCard;
+                if (self.rank == firstCard.rank && self.rank == secondCard.rank) {
+                    score = 20;
+                } else if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit]) {
+                    score = 10;
+                } else if (self.rank == firstCard.rank || self.rank == secondCard.rank) {
+                    score = 6;
+                } else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit]) {
+                    score = 1;
+                }
+            }
+            break;
         }
     }
     return score;

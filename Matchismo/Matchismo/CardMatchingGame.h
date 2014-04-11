@@ -16,11 +16,17 @@
 - (instancetype)initWithCardCount:(NSUInteger)count
                        usingDeck:(Deck *)deck;
 
+// called when a card is clicked
 - (void)chooseCardAtIndex:(NSUInteger)index;
+
 
 - (Card *)cardAtIndex:(NSUInteger)index;
 
+- (BOOL)isNewGame;
+
 //there is no public setter for this property (readonly) -
 @property (nonatomic, readonly) NSInteger score;
+
+@property (nonatomic) NSInteger matchMode; // 2 or 3
 
 @end

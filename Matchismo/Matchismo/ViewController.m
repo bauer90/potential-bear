@@ -16,16 +16,38 @@
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *matchModeSelector;
 
 @end
 
 @implementation ViewController
+
+// called when selected index is changed
+- (IBAction)switchMatchMode:(UISegmentedControl *)sender
+{
+    
+    self.game.matchMode = sender.selectedSegmentIndex + 2;
+    [self updateUI];
+}
 
 - (CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                        usingDeck:[[PlayingCardDeck alloc] init]];
     return _game;
+}
+
+- (void)reset
+{
+    self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                  usingDeck:[[PlayingCardDeck alloc] init]];
+}
+
+     
+- (IBAction)resetGame:(UIButton *)sender
+{
+    [self reset];
+    [self updateUI];
 }
 
 - (IBAction)touchCardButton:(UIButton*)sender
@@ -42,9 +64,10 @@
         Card *card = [self.game cardAtIndex:buttonIndex]; // find the card ...
         [button setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [button setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
-        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
         button.enabled = !card.isMatched;
     }
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    self.matchModeSelector.enabled = self.game.isNewGame;
 }
 
 - (NSString *)titleForCard:(Card *)card

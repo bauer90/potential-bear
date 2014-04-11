@@ -10,7 +10,9 @@
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
+@property (nonatomic, readwrite) NSInteger stepCount;
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
+
 @end
 
 @implementation CardMatchingGame
@@ -18,6 +20,7 @@
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
+
 - (NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
@@ -39,7 +42,26 @@ static const int COST_TO_CHOOSE = 1;
             }
         }
     }
+    self.score = 0;
+    self.stepCount = 0;
     return self;
+}
+
+
+- (BOOL)isNewGame
+{
+    return self.stepCount == 0;
+}
+
+- (NSArray *)chosenCards
+{
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (Card *card in self.cards) {
+        if (card.isChosen) {
+            [result addObject:card];
+        }
+    }
+    return result;
 }
 
 - (void)chooseCardAtIndex:(NSUInteger)index
@@ -67,6 +89,7 @@ static const int COST_TO_CHOOSE = 1;
             card.chosen = YES;
         }
     }
+    self.stepCount++;
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index
