@@ -44,7 +44,6 @@
                                                   usingDeck:[[PlayingCardDeck alloc] init]];
 }
 
-     
 - (IBAction)resetGame:(UIButton *)sender
 {
     [self reset];
@@ -101,7 +100,6 @@
 {
     NSString* msg = [[NSString alloc] init];
     //check to see if there're three card match
-    for
     
     return msg;
 }

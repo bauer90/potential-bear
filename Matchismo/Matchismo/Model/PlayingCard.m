@@ -14,82 +14,75 @@
 @synthesize suit = _suit;
 
 // overriding match: of Card, but need no re-declaration
-// 4 pt for rank match and 1 pt for suit match.
-// updated for hw2 (otherCards can have 2 cards)
-//- (int)match:(NSArray *)otherCards
-//{
-//    int score = 0;
-//    switch ([otherCards count]) {
-//        case 1: {
-//            id card = [otherCards firstObject];
-//            if ([card isKindOfClass:[PlayingCard class]]) {
-//                PlayingCard *otherCard = (PlayingCard *)card;
-//                if (otherCard.rank == self.rank) {
-//                    score = 8;
-//                } else if ([otherCard.suit isEqualToString:self.suit]) {
-//                    score = 2;
-//                }
-//            }
-//            break;
-//        }
-//        case 2: {
-//            id _firstCard = [otherCards firstObject];
-//            id _secondCard = [otherCards lastObject];
-//            if ([_firstCard isKindOfClass:[PlayingCard class]] && [_secondCard isKindOfClass:[PlayingCard class]]) {
-//                PlayingCard *firstCard = (PlayingCard *)_firstCard;
-//                PlayingCard *secondCard = (PlayingCard *)_secondCard;
-//                if (self.rank == firstCard.rank && self.rank == secondCard.rank) {
-//                    score = 20;
-//                } else if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit]) {
-//                    score = 10;
-//                } else if (self.rank == firstCard.rank || self.rank == secondCard.rank) {
-//                    score = 6;
-//                } else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit]) {
-//                    score = 1;
-//                }
-//            }
-//            break;
-//        }
-//    }
-//    return score;
-//}
-
-// matchMode can be 2 or 3
-- (int)match:(NSArray *)otherCards
-    withMode:(int)matchMode
+// automatically test if 'other' is eligible for match-test
+// and returns the score
+- (int)match:(NSArray *)Cards
 {
     int score = 0;
-    if (matchMode == 2) {
-        for (PlayingCard *card in otherCards) {
-            if (!card.isMatched && card.isChosen) {
-                if (card.rank == self.rank) {
-                    score = 8;
-                } else if ([card.suit isEqualToString:self.suit]) {
-                    score = 2;
-                }
-            }
+    if ([Cards count] == 1) {
+        PlayingCard *card = (PlayingCard *)(Cards[0]);
+        if (card.rank == self.rank) score = 5;
+        else if ([card.suit isEqualToString:self.suit]) score = 2;
+        else {score = 0;}
+        if (score > 0) {
+            self.matched = YES;
+            card.matched = YES;
+            self.chosen = YES;
+            card.chosen = YES;
+        } else {
+            self.chosen = YES;
         }
-    } else if (matchMode == 3) {
-        if ([[PlayingCard numUnMatchedAndChosen:otherCards] count] == 2 && [[PlayingCard numUnMatchedAndChosen:@[self]] count] == 1) {
-            
-        }
-        
     }
     return score;
 }
 
-+ (NSArray *)numUnMatchedAndChosen:(NSArray *)cards
+// match for 3-card mode
+// automatically test if 'other[0]' and 'other[1]' are eligible for match-test
+// and returns the score
+- (int)match3:(NSArray *)Cards
 {
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (PlayingCard *card in cards) {
-        if (card.isChosen && !card.isMatched) {
-            [result addObject:card];
+    int score = 0;
+    if ([Cards count] == 2) {
+        PlayingCard *firstCard = (PlayingCard *)(Cards[0]);
+        PlayingCard *secondCard = (PlayingCard *)(Cards[1]);
+        if (self.rank == firstCard.rank && self.rank == secondCard.rank) {
+            score = 20;
+        } else if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit]) {
+            score = 10;
+        } else if (self.rank == firstCard.rank || self.rank == secondCard.rank || firstCard.rank == secondCard.rank) {
+            score = 3;
+        } else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit] || [firstCard.suit isEqualToString:secondCard.suit]) {
+            score = 1;
+        } else { score = 0; }
+        if (score > 0) {
+            self.matched = YES;
+            self.chosen = YES;
+            firstCard.matched = YES;
+            firstCard.chosen = YES;
+            secondCard.matched = YES;
+            secondCard.chosen = YES;
+        } else {
+            self.chosen = YES;
         }
     }
-    return result;
+    return score;
 }
 
-             
+// returns a list of those in cards (excluding self)
+// that are ready to test for match-ness.
+// i.e. Chosen but not Matched.
+- (NSArray *)UnMatchedAndChosen:(NSArray *)cards
+{
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (id card in cards) {
+        PlayingCard *_card = (PlayingCard *)card;
+        if (_card.isChosen && !_card.isMatched && card != self) {
+            [result addObject:_card];
+        }
+    }
+    return (NSArray *)result;
+}
+
 + (NSArray *)validSuits
 {
     return @[@"♠︎", @"♣︎", @"♥︎", @"♦︎"];

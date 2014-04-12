@@ -42,6 +42,7 @@ static const int COST_TO_CHOOSE = 1;
             }
         }
     }
+    self.matchMode = 2;
     self.score = 0;
     self.stepCount = 0;
     return self;
@@ -53,44 +54,42 @@ static const int COST_TO_CHOOSE = 1;
     return self.stepCount == 0;
 }
 
-- (NSArray *)chosenCards
+- (void) unChooselastSelections
 {
-    NSMutableArray *result = [[NSMutableArray alloc] init];
     for (Card *card in self.cards) {
-        if (card.isChosen) {
-            [result addObject:card];
+        if (card.isChosen && !card.isMatched) {
+            card.chosen = NO;
         }
     }
-    return result;
 }
 
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
-    Card *card = [self cardAtIndex:index];
-    if (!card.isMatched) { // matched cards are "out of game"
-        if (card.isChosen) { // toggle between Chosen / !Chosen
+    self.stepCount++;
+    PlayingCard *card = (PlayingCard *)[self cardAtIndex:index];
+    NSArray* eligibles = [card UnMatchedAndChosen:self.cards];
+    NSLog(@"%d %d",[eligibles count], self.matchMode);
+    if ([eligibles count] == self.matchMode) {
+        [self unChooselastSelections];
+    }
+    if ([eligibles count] == (self.matchMode - 1)) {
+        NSLog(@"wow");
+        int matchScore = (self.matchMode == 2) ? [card match:eligibles] : [card match3:eligibles];
+        if (matchScore) {
+            self.score += matchScore * MATCH_BONUS;
+        } else {
+            self.score -= MISMATCH_PENALTY;
+        }
+    } else {
+        if (card.isChosen) {
             card.chosen = NO;
         } else {
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) { // matchScore > 0
-                        self.score += matchScore * MATCH_BONUS;
-                        card.matched = YES; // mark both cards to -
-                        otherCard.matched = YES; // be "out of game"
-                    } else { // no match
-                        self.score -= MISMATCH_PENALTY;
-                        otherCard.chosen = NO;
-                    }
-                    break;
-                }
-            }
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
         }
     }
-    self.stepCount++;
 }
+
 
 - (Card *)cardAtIndex:(NSUInteger)index
 {
