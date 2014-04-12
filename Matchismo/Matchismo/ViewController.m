@@ -14,6 +14,7 @@
 @interface ViewController ()
 
 @property (nonatomic, strong) CardMatchingGame *game;
+@property (weak, nonatomic) IBOutlet UILabel *statusMessage;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *matchModeSelector;
@@ -70,6 +71,8 @@
     self.matchModeSelector.enabled = self.game.isNewGame;
 }
 
+
+
 - (NSString *)titleForCard:(Card *)card
 {
     return card.isChosen ? card.contents : @"";
@@ -78,6 +81,29 @@
 - (UIImage *)backgroundImageForCard:(Card *)card
 {
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
+}
+
+
+- (NSString *)statusMessage:(BOOL)isMatch
+              withFirstCard:(Card *)cardOne
+              andSecondCard:(Card *)cardTwo
+               andThirdCard:(Card *)cardThree
+{
+    NSString *msg = [NSString stringWithFormat:@"%@ %@ %@ %@"
+                     ,(isMatch ? @"Yea, Match!" : @"Boo, Mismatch.")
+                     ,(cardOne.contents)
+                     ,(cardTwo.contents)
+                     ,(cardThree.contents)];
+    return msg;
+}
+
+- (NSString *)situationString
+{
+    NSString* msg = [[NSString alloc] init];
+    //check to see if there're three card match
+    for
+    
+    return msg;
 }
 
 @end
