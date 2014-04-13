@@ -10,7 +10,7 @@
 #import "PlayingCard.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
-
+#import "PlayingRecord.h"
 @interface ViewController ()
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *statusMessage;
@@ -63,6 +63,7 @@
     // updates score label, mode selector and msg label.
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.matchModeSelector.enabled = self.game.isNewGame;
+    self.statusMessage.text = [self statusLabelContents];
 }
 
 - (NSString *)titleForCard:(Card *)card
@@ -78,8 +79,13 @@
 - (NSString *)statusLabelContents
 {
     NSString *result = [[NSString alloc] init];
+    playingRecord *rec = [self.game.playingHistory lastObject];
     if (self.game.matchMode == 2) {
-        
+        result = [result stringByAppendingFormat:@"%d", rec.move];
+        NSLog(@"%d", [rec.cards count]);
+        for (PlayingCard *card in rec.cards) {
+            result = [result stringByAppendingFormat:@" %@ ", card.contents];
+        }
     } else if (self.game.matchMode == 3) {
         
     }

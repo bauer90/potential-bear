@@ -10,11 +10,30 @@
 
 @implementation playingRecord
 
--(NSArray *)cards
+- (NSArray *)cards
 {
-    if (_cards) _cards = [[NSArray alloc] init];
+    if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
 }
 
+- (instancetype) initWithMove:(NSUInteger)theMove
+                     andCards:(NSArray *)theCards
+                      andCard:(PlayingCard *)theCard
+{
+    self = [super init];
+    if (self) {
+        self.move = theMove;
+        if (theCards != nil && [theCards count] > 0) {
+            [self.cards addObjectsFromArray:theCards];
+          //  NSLog(@"%@",[self.cards lastObject]);
+        }
+        if (theCard != nil) {
+            [self.cards addObject:theCard];
+         //   NSLog(@"%@",[self.cards lastObject]);
+ 
+        }
+    }
+    return self;
+}
 
 @end

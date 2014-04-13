@@ -33,6 +33,6 @@
 @property (nonatomic) NSInteger matchMode; // 2 or 3
 
 // an NSMutableArray of playingRecord
-@property (nonatomic, readonly) NSMutableArray *playingHistory; 
+@property (nonatomic, strong) NSMutableArray *playingHistory;
 
 @end
