@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PlayingCard.h"
 #import "PlayingCardDeck.h"
+#import "PlayingRecord.h"
 
 @interface CardMatchingGame : NSObject
 
@@ -30,5 +31,8 @@
 
 // is 2 for two-card mode and 3 for three-card mode
 @property (nonatomic) NSInteger matchMode; // 2 or 3
+
+// an NSMutableArray of playingRecord
+@property (nonatomic, readonly) NSMutableArray *playingHistory; 
 
 @end

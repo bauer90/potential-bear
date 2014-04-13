@@ -12,13 +12,11 @@
 #import "CardMatchingGame.h"
 
 @interface ViewController ()
-
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *statusMessage;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *matchModeSelector;
-
 @end
 
 @implementation ViewController
@@ -34,19 +32,13 @@
 - (CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                       usingDeck:[[PlayingCardDeck alloc] init]];
+                                                          usingDeck:[[PlayingCardDeck alloc] init]];
     return _game;
-}
-
-- (void)reset
-{
-    self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                  usingDeck:[[PlayingCardDeck alloc] init]];
 }
 
 - (IBAction)resetGame:(UIButton *)sender
 {
-    [self reset];
+    self.game = nil;
     [self updateUI];
 }
 
@@ -59,18 +51,19 @@
 
 - (void)updateUI
 {
-    for (UIButton *button in self.cardButtons) { // for each index of card ...
-        int buttonIndex = [self.cardButtons indexOfObject:button]; // get the index ...
-        Card *card = [self.game cardAtIndex:buttonIndex]; // find the card ...
+    // updates each card
+    for (UIButton *button in self.cardButtons) {
+        int buttonIndex = [self.cardButtons indexOfObject:button];
+        Card *card = [self.game cardAtIndex:buttonIndex];
         [button setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [button setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         button.enabled = !card.isMatched;
     }
+    
+    // updates score label, mode selector and msg label.
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.matchModeSelector.enabled = self.game.isNewGame;
 }
-
-
 
 - (NSString *)titleForCard:(Card *)card
 {
@@ -82,26 +75,16 @@
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
 }
 
-
-- (NSString *)statusMessage:(BOOL)isMatch
-              withFirstCard:(Card *)cardOne
-              andSecondCard:(Card *)cardTwo
-               andThirdCard:(Card *)cardThree
+- (NSString *)statusLabelContents
 {
-    NSString *msg = [NSString stringWithFormat:@"%@ %@ %@ %@"
-                     ,(isMatch ? @"Yea, Match!" : @"Boo, Mismatch.")
-                     ,(cardOne.contents)
-                     ,(cardTwo.contents)
-                     ,(cardThree.contents)];
-    return msg;
+    NSString *result = [[NSString alloc] init];
+    if (self.game.matchMode == 2) {
+        
+    } else if (self.game.matchMode == 3) {
+        
+    }
+    return result;
 }
 
-- (NSString *)situationString
-{
-    NSString* msg = [[NSString alloc] init];
-    //check to see if there're three card match
-    
-    return msg;
-}
 
 @end

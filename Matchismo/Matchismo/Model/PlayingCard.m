@@ -23,15 +23,6 @@
         PlayingCard *card = (PlayingCard *)(Cards[0]);
         if (card.rank == self.rank) score = 5;
         else if ([card.suit isEqualToString:self.suit]) score = 2;
-        else {score = 0;}
-        if (score > 0) {
-            self.matched = YES;
-            card.matched = YES;
-            self.chosen = YES;
-            card.chosen = YES;
-        } else {
-            self.chosen = YES;
-        }
     }
     return score;
 }
@@ -45,24 +36,20 @@
     if ([Cards count] == 2) {
         PlayingCard *firstCard = (PlayingCard *)(Cards[0]);
         PlayingCard *secondCard = (PlayingCard *)(Cards[1]);
-        if (self.rank == firstCard.rank && self.rank == secondCard.rank) {
+        if (self.rank == firstCard.rank
+            && self.rank == secondCard.rank) {
             score = 20;
-        } else if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit]) {
+        } else if ([self.suit isEqualToString:firstCard.suit]
+                   && [self.suit isEqualToString:secondCard.suit]) {
             score = 10;
-        } else if (self.rank == firstCard.rank || self.rank == secondCard.rank || firstCard.rank == secondCard.rank) {
+        } else if (self.rank == firstCard.rank
+                   || self.rank == secondCard.rank
+                   || firstCard.rank == secondCard.rank) {
             score = 3;
-        } else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit] || [firstCard.suit isEqualToString:secondCard.suit]) {
+        } else if ([self.suit isEqualToString:firstCard.suit]
+                   || [self.suit isEqualToString:secondCard.suit]
+                   || [firstCard.suit isEqualToString:secondCard.suit]) {
             score = 1;
-        } else { score = 0; }
-        if (score > 0) {
-            self.matched = YES;
-            self.chosen = YES;
-            firstCard.matched = YES;
-            firstCard.chosen = YES;
-            secondCard.matched = YES;
-            secondCard.chosen = YES;
-        } else {
-            self.chosen = YES;
         }
     }
     return score;
@@ -110,8 +97,6 @@
 {
     return [self.suit stringByAppendingString:[PlayingCard validRanks][self.rank]];
 }
-
-
 
 - (void) setSuit:(NSString *)suit
 {
