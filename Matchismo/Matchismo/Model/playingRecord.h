@@ -15,9 +15,11 @@
 
 @property (nonatomic) NSUInteger move;
 @property (nonatomic, strong) NSMutableArray *cards;
+@property (nonatomic) NSInteger score;
 
 - (instancetype) initWithMove:(NSUInteger)theMove
                      andCards:(NSArray *)theCards
-                      andCard:(PlayingCard *)theCard;
+                      andCard:(PlayingCard *)theCard
+                 gainingScore:(NSUInteger)theScore;
 
 @end

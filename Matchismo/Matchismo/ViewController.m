@@ -78,8 +78,8 @@
 
 - (NSString *)statusLabelContents
 {
-    NSString *result = @"";
     NSString *moveString = @"";
+    NSString *scoreString = @"";
     playingRecord *rec = [self.game.playingHistory lastObject];
     NSLog(@"%d", rec.move);
     if (rec.move == 1) {
@@ -91,10 +91,22 @@
     } else {
         moveString = @"";
     }
-    result = [result stringByAppendingString:moveString];
+    NSString *result = moveString;
     for (PlayingCard *card in rec.cards) {
         result = [result stringByAppendingFormat:@" %@ ", card.contents];
     }
+    if (rec.score == 0) {
+        scoreString = @"\n... and score not changed.";
+    } else if (rec.score > 0) {
+        scoreString = [NSString stringWithFormat:@"\n... and %d points gained!", rec.score];
+    } else if (rec.score < 0) {
+        scoreString = [NSString stringWithFormat:@"\n... and %d points lost.", -rec.score];
+    } else {
+        scoreString = @"";
+    }
+    result = [result stringByAppendingString:scoreString];
+    NSLog(result);
+
     return result;
 }
 

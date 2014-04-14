@@ -19,6 +19,7 @@
 - (instancetype) initWithMove:(NSUInteger)theMove
                      andCards:(NSArray *)theCards
                       andCard:(PlayingCard *)theCard
+                 gainingScore:(NSUInteger)theScore
 {
     self = [super init];
     if (self) {
@@ -29,6 +30,7 @@
         if (theCard != nil) {
             [self.cards addObject:theCard]; 
         }
+        self.score = theScore;
     }
     return self;
 }
