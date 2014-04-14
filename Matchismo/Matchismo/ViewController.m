@@ -81,12 +81,11 @@
     NSString *moveString = @"";
     NSString *scoreString = @"";
     playingRecord *rec = [self.game.playingHistory lastObject];
-    NSLog(@"%d", rec.move);
-    if (rec.move == 1) {
+    if (rec.move == MATCH) {
         moveString = @"YEAH! A Match for: ";
-    } else if (rec.move == 2) {
+    } else if (rec.move == MISMATCH) {
         moveString = @"BOOO! A Mismatch for: ";
-    } else if (rec.move == 3) {
+    } else if (rec.move == SELECTING) {
         moveString = @"Currently Selecting: ";
     } else {
         moveString = @"";
@@ -105,8 +104,6 @@
         scoreString = @"";
     }
     result = [result stringByAppendingString:scoreString];
-    NSLog(result);
-
     return result;
 }
 
