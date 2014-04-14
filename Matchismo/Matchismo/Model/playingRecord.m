@@ -25,12 +25,9 @@
         self.move = theMove;
         if (theCards != nil && [theCards count] > 0) {
             [self.cards addObjectsFromArray:theCards];
-          //  NSLog(@"%@",[self.cards lastObject]);
         }
         if (theCard != nil) {
-            [self.cards addObject:theCard];
-         //   NSLog(@"%@",[self.cards lastObject]);
- 
+            [self.cards addObject:theCard]; 
         }
     }
     return self;

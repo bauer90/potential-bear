@@ -78,16 +78,22 @@
 
 - (NSString *)statusLabelContents
 {
-    NSString *result = [[NSString alloc] init];
+    NSString *result = @"";
+    NSString *moveString = @"";
     playingRecord *rec = [self.game.playingHistory lastObject];
-    if (self.game.matchMode == 2) {
-        result = [result stringByAppendingFormat:@"%d", rec.move];
-        NSLog(@"%d", [rec.cards count]);
-        for (PlayingCard *card in rec.cards) {
-            result = [result stringByAppendingFormat:@" %@ ", card.contents];
-        }
-    } else if (self.game.matchMode == 3) {
-        
+    NSLog(@"%d", rec.move);
+    if (rec.move == 1) {
+        moveString = @"YEAH! A Match for: ";
+    } else if (rec.move == 2) {
+        moveString = @"BOOO! A Mismatch for: ";
+    } else if (rec.move == 3) {
+        moveString = @"Currently Selecting: ";
+    } else {
+        moveString = @"";
+    }
+    result = [result stringByAppendingString:moveString];
+    for (PlayingCard *card in rec.cards) {
+        result = [result stringByAppendingFormat:@" %@ ", card.contents];
     }
     return result;
 }

@@ -12,7 +12,7 @@
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, readwrite) NSInteger stepCount;
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
-//@property (nonatomic, readwrite) NSMutableArray *playingHistory;
+@property (nonatomic, readwrite) NSMutableArray *playingHistory;
 
 @end
 
