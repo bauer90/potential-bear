@@ -35,4 +35,7 @@
 // an NSMutableArray of playingRecord
 @property (nonatomic, readonly) NSMutableArray *playingHistory;
 
+// how many clicks have been made so far
+@property (nonatomic, readonly) NSInteger stepCount;
+
 @end

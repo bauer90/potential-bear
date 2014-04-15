@@ -32,27 +32,28 @@
 // and returns the score
 - (int)match3:(NSArray *)Cards
 {
-    int score = 0;
     if ([Cards count] == 2) {
         PlayingCard *firstCard = (PlayingCard *)(Cards[0]);
         PlayingCard *secondCard = (PlayingCard *)(Cards[1]);
         if (self.rank == firstCard.rank
             && self.rank == secondCard.rank) {
-            score = 20;
+            return  20;
         } else if ([self.suit isEqualToString:firstCard.suit]
                    && [self.suit isEqualToString:secondCard.suit]) {
-            score = 10;
+            return 10;
         } else if (self.rank == firstCard.rank
                    || self.rank == secondCard.rank
                    || firstCard.rank == secondCard.rank) {
-            score = 3;
+            return 3;
         } else if ([self.suit isEqualToString:firstCard.suit]
                    || [self.suit isEqualToString:secondCard.suit]
                    || [firstCard.suit isEqualToString:secondCard.suit]) {
-            score = 1;
+            return 1;
+        } else {
+            return 0;
         }
     }
-    return score;
+    return 0;
 }
 
 // returns a list of those in cards (excluding self)

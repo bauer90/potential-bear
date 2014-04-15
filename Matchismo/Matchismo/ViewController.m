@@ -48,7 +48,13 @@
 - (IBAction)slideHistoryBar:(UISlider *)sender
 {
     self.historyViewer.value = sender.value;
-    [self updateUI];
+    [self updateUIForSlideBar];
+}
+
+- (void)updateUIForSlideBar
+{
+    self.statusMessage.textColor = (self.historyViewer.value < self.game.stepCount) ? [UIColor grayColor] : [UIColor blackColor];
+    self.statusMessage.text = [self statusLabelContents:self.historyViewer.value];
 }
 
 - (IBAction)touchCardButton:(UIButton*)sender
@@ -73,15 +79,13 @@
     // updates score label, mode selector and msg label.
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.matchModeSelector.enabled = self.game.isNewGame;
-    self.statusMessage.text = [self statusLabelContents:self.historyViewer.value];
-    NSLog(@"maxVal = %d curVal = %d", (int)self.historyViewer.maximumValue, (int)self.historyViewer.value);
+    [self updateUIForSlideBar];
 }
 
 - (NSString *)statusLabelContents:(int)index
 {
     if (index == 0) return @"New Game Started!";
-    NSString *moveString = @"";
-    NSString *scoreString = @"";
+    NSString *moveString = @"", *scoreString = @"", *result = @"";
     playingRecord *rec = self.game.playingHistory[index - 1];
     if (rec.move == MATCH) {
         moveString = @"YEAH! A Match for: ";
@@ -90,7 +94,7 @@
     } else {
         moveString = @"Currently Selecting: ";
     }
-    NSString *result = moveString;
+    result = moveString;
     for (PlayingCard *card in rec.cards) {
         result = [result stringByAppendingFormat:@" %@ ", card.contents];
     }
