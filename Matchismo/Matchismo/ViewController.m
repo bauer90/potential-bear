@@ -84,27 +84,25 @@
 
 - (NSString *)statusLabelContents:(int)index
 {
-    if (index == 0) return @"New Game Started!";
+    if (index == 0)
+        return @"New Game Started!";
     NSString *moveString = @"", *scoreString = @"", *result = @"";
     playingRecord *rec = self.game.playingHistory[index - 1];
-    if (rec.move == MATCH) {
+    if (rec.move == MATCH)
         moveString = @"YEAH! A Match for: ";
-    } else if (rec.move == MISMATCH) {
+    else if (rec.move == MISMATCH)
         moveString = @"BOOO! A Mismatch for: ";
-    } else {
+    else
         moveString = @"Currently Selecting: ";
-    }
     result = moveString;
-    for (PlayingCard *card in rec.cards) {
+    for (PlayingCard *card in rec.cards)
         result = [result stringByAppendingFormat:@" %@ ", card.contents];
-    }
-    if (rec.score == 0) {
+    if (rec.score == 0)
         scoreString = @"\n... and score not changed.";
-    } else if (rec.score > 0) {
+    else if (rec.score > 0)
         scoreString = [NSString stringWithFormat:@"\n... and %d points gained!", rec.score];
-    } else {
+    else
         scoreString = [NSString stringWithFormat:@"\n... and %d points lost.", -rec.score];
-    }
     result = [result stringByAppendingString:scoreString];
     return result;
 }

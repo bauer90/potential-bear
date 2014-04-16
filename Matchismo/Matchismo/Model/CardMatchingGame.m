@@ -41,9 +41,9 @@ static const int COST_TO_CHOOSE = 1;
     if (self) { // error checking for mem alloc failure
         for (int i = 0; i < count; i++) {
             Card *card = [deck drawRandomCard];
-            if (card) {
+            if (card)
                 [self.cards addObject:card];
-            } else { // addObject:nil will cause error
+            else { // addObject:nil will cause error
                 self = nil;
                 break;
             }
@@ -77,9 +77,7 @@ static const int COST_TO_CHOOSE = 1;
 - (void) unChooselastSelections
 {
     for (Card *card in self.cards) {
-        if (card.isChosen && !card.isMatched) {
-            card.chosen = NO;
-        }
+        if (card.isChosen && !card.isMatched) card.chosen = NO;
     }
 }
 

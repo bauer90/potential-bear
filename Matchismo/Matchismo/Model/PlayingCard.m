@@ -18,13 +18,14 @@
 // and returns the score
 - (int)match:(NSArray *)Cards
 {
-    int score = 0;
     if ([Cards count] == 1) {
         PlayingCard *card = (PlayingCard *)(Cards[0]);
-        if (card.rank == self.rank) score = 5;
-        else if ([card.suit isEqualToString:self.suit]) score = 2;
+        if (card.rank == self.rank)
+            return 5;
+        else if ([card.suit isEqualToString:self.suit])
+            return 2;
     }
-    return score;
+    return 0;
 }
 
 // match for 3-card mode
@@ -35,23 +36,16 @@
     if ([Cards count] == 2) {
         PlayingCard *firstCard = (PlayingCard *)(Cards[0]);
         PlayingCard *secondCard = (PlayingCard *)(Cards[1]);
-        if (self.rank == firstCard.rank
-            && self.rank == secondCard.rank) {
+        if (self.rank == firstCard.rank && self.rank == secondCard.rank)
             return  20;
-        } else if ([self.suit isEqualToString:firstCard.suit]
-                   && [self.suit isEqualToString:secondCard.suit]) {
+        else if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit])
             return 10;
-        } else if (self.rank == firstCard.rank
-                   || self.rank == secondCard.rank
-                   || firstCard.rank == secondCard.rank) {
+        else if (self.rank == firstCard.rank || self.rank == secondCard.rank || firstCard.rank == secondCard.rank)
             return 3;
-        } else if ([self.suit isEqualToString:firstCard.suit]
-                   || [self.suit isEqualToString:secondCard.suit]
-                   || [firstCard.suit isEqualToString:secondCard.suit]) {
+        else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit] || [firstCard.suit isEqualToString:secondCard.suit])
             return 1;
-        } else {
+        else
             return 0;
-        }
     }
     return 0;
 }
@@ -64,9 +58,7 @@
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for (id card in cards) {
         PlayingCard *_card = (PlayingCard *)card;
-        if (_card.isChosen && !_card.isMatched && card != self) {
-            [result addObject:_card];
-        }
+        if (_card.isChosen && !_card.isMatched && card != self) [result addObject:_card];
     }
     return (NSArray *)result;
 }
@@ -88,9 +80,8 @@
 
 - (void)setRank:(NSUInteger)rank
 {
-    if (rank > 0 && rank <= [PlayingCard maxRank]) {
+    if (rank > 0 && rank <= [PlayingCard maxRank])
         _rank = rank;
-    }
 }
 
 /* overriding 'contents' in Card */
@@ -101,9 +92,7 @@
 
 - (void) setSuit:(NSString *)suit
 {
-    if ([[PlayingCard validSuits] containsObject:suit]) {
-        _suit = suit;
-    }
+    if ([[PlayingCard validSuits] containsObject:suit]) _suit = suit;
 }
 
 - (NSString *)suit
