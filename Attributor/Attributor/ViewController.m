@@ -16,17 +16,20 @@
 
 
 @implementation ViewController
+
 - (IBAction)changeBodySelectionColorToMatchBackgroundOfButton:(UIButton *)sender
 {
     [self.body.textStorage addAttribute:NSForegroundColorAttributeName
                                   value:sender.backgroundColor
                                   range:self.body.selectedRange];
 }
+
 - (IBAction)outlineBodySelection:(UIButton *)sender
 {
-    [self.body.textStorage addAttributes:@{NSStrokeWidthAttributeName: @-3,
-                                           NSStrokeColorAttributeName: [UIColor blackColor]} range:self.body.selectedRange];
+    [self.body.textStorage addAttributes:@{NSStrokeWidthAttributeName:@-3, NSStrokeColorAttributeName:[UIColor blackColor]}
+                                   range:self.body.selectedRange];
 }
+
 - (IBAction)unoutlineBodySelection:(UIButton *)sender
 {
     [self.body.textStorage removeAttribute:NSStrokeColorAttributeName
@@ -38,8 +41,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:self.outlineButton.currentTitle];
-    [title setAttributes:@{NSStrokeWidthAttributeName:@3,
-                           NSStrokeColorAttributeName:self.outlineButton.tintColor}
+    [title setAttributes:@{NSStrokeWidthAttributeName:@3, NSStrokeColorAttributeName:self.outlineButton.tintColor}
                    range:NSMakeRange(0, [title length])];
     [self.outlineButton setAttributedTitle: title
                                   forState: UIControlStateNormal];
