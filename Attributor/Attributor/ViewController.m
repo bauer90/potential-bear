@@ -17,6 +17,7 @@
 
 @implementation ViewController
 
+// when 'sender' (button) is touched, set the selected string the same color as the button
 - (IBAction)changeBodySelectionColorToMatchBackgroundOfButton:(UIButton *)sender
 {
     [self.body.textStorage addAttribute:NSForegroundColorAttributeName
@@ -24,18 +25,23 @@
                                   range:self.body.selectedRange];
 }
 
+// outline selected string
 - (IBAction)outlineBodySelection:(UIButton *)sender
 {
     [self.body.textStorage addAttributes:@{NSStrokeWidthAttributeName:@-3, NSStrokeColorAttributeName:[UIColor blackColor]}
                                    range:self.body.selectedRange];
 }
 
+// un-outline selected string (delete those two attributes for selected string)
 - (IBAction)unoutlineBodySelection:(UIButton *)sender
 {
     [self.body.textStorage removeAttribute:NSStrokeColorAttributeName
                                      range:self.body.selectedRange];
+    [self.body.textStorage removeAttribute:NSStrokeWidthAttributeName
+                                     range:self.body.selectedRange];
 }
 
+// after View is loaded, set the 'outline' button outlined.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
