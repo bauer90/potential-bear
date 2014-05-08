@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "PlayingCard.h"
-#import "PlayingCardDeck.h"
+//#import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
 #import "PlayingRecord.h"
 
@@ -33,9 +33,16 @@
 - (CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                          usingDeck:[[PlayingCardDeck alloc] init]];
+                                                          usingDeck:[self createDeck]];
     return _game;
 }
+
+- (Deck *)createDeck // abstract method (has to be made public)
+{
+    return nil; //making ViewController class 'abstract'. (there's no explicit 'abstract' class in obj-C. But 'abstract' can be done this way)
+}
+                         
+                    
 
 - (IBAction)resetGame:(UIButton *)sender
 {
