@@ -27,6 +27,7 @@
     [self updateUI];
 }
 
+// returns a string that satisfies (attribute == attributeName)
 - (NSAttributedString *)charactersWithAttribute:(NSString *)attributeName
 {
     NSMutableAttributedString *chars = [[NSMutableAttributedString alloc] init];

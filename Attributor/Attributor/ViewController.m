@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TextStatsViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *headline;
@@ -16,6 +17,17 @@
 
 
 @implementation ViewController
+
+// pass the text in this View to the 'Stats' View
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Analyze Text"]) {
+        if ([segue.destinationViewController isKindOfClass:[TextStatsViewController class]]) {
+            TextStatsViewController *tvc = (TextStatsViewController *)segue.destinationViewController;
+            tvc.textToAnalyze = self.body.textStorage;
+        }
+    }
+}
 
 // when 'sender' (button) is touched, set the selected string the same color as the button
 - (IBAction)changeBodySelectionColorToMatchBackgroundOfButton:(UIButton *)sender
@@ -46,11 +58,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:self.outlineButton.currentTitle];
-    [title setAttributes:@{NSStrokeWidthAttributeName:@3, NSStrokeColorAttributeName:self.outlineButton.tintColor}
-                   range:NSMakeRange(0, [title length])];
-    [self.outlineButton setAttributedTitle: title
-                                  forState: UIControlStateNormal];
+    if (self.outlineButton != nil) {
+        NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:self.outlineButton.currentTitle];
+        [title setAttributes:@{NSStrokeWidthAttributeName:@3, NSStrokeColorAttributeName:self.outlineButton.tintColor}
+                       range:NSMakeRange(0, [title length])];
+        [self.outlineButton setAttributedTitle: title
+                                      forState: UIControlStateNormal];
+    }
 }
 
 -(void) viewWillAppear:(BOOL)animated
