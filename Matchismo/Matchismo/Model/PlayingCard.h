@@ -18,6 +18,7 @@
 + (NSArray *)validRanks;
 + (NSUInteger)maxRank;
 
+- (int)match:(NSArray *)Cards;
 - (int)match3:(NSArray *)Cards;
 - (NSArray *)UnMatchedAndChosen:(NSArray *)cards;
 @end
