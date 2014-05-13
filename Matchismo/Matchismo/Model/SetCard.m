@@ -39,12 +39,12 @@
 
 + (NSArray *)validColors
 {
-    return @[@"RED", @"GREEN", @"PURPLE"];
+    return @[@"red", @"green", @"purple"];
 }
 
 + (NSArray *)validShadings
 {
-    return @[@"SOLID", @"STRIPED", @"OPEN"];
+    return @[@"solid", @"striped", @"open"];
 }
 
 - (void)setNumber:(NSUInteger)number
@@ -67,9 +67,9 @@
     if ([[SetCard validSymbols] containsObject:symbol]) _symbol = symbol;
 }
 
-- (NSUInteger)match:(NSArray *)cards
+- (NSInteger)match:(NSArray *)cards
 {
-    //TODO
+    // todo
     return 0;
 }
 
