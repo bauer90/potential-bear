@@ -60,7 +60,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     if (self.outlineButton != nil) {
         NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:self.outlineButton.currentTitle];
-        [title setAttributes:@{NSStrokeWidthAttributeName:@3, NSStrokeColorAttributeName:self.outlineButton.tintColor}
+        [title setAttributes:@{NSStrokeWidthAttributeName:@3, NSStrokeColorAttributeName:[UIColor redColor]}
                        range:NSMakeRange(0, [title length])];
         [self.outlineButton setAttributedTitle: title
                                       forState: UIControlStateNormal];

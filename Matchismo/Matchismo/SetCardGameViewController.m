@@ -46,4 +46,44 @@
 }
 */
 
+- (NSAttributedString *)titleForCard:(SetCard *)card
+{
+    // symbol and number
+    NSMutableString *str = [[NSMutableString alloc] init];
+    for (int i = 0; i < card.number; i++) {
+        [str appendString:card.symbol];
+        [str appendString:@" "];
+    }
+
+    // add color attribute
+    NSMutableAttributedString *str_result = [[NSMutableAttributedString alloc] initWithString:str];
+    UIColor *_color = [UIColor blackColor];
+    if ([card.color isEqualToString:[SetCard validColors][0]]) {        // red
+        _color = [UIColor redColor];
+    } else if ([card.color isEqualToString:[SetCard validColors][1]]) { // green
+        _color = [UIColor greenColor];
+    } else {                                                            // purple
+        _color = [UIColor purpleColor];
+    }
+    [str_result addAttribute:NSForegroundColorAttributeName
+                       value:_color
+                       range:NSMakeRange(0, [str length])];
+
+    // add shading attribute
+    if ([card.shading isEqualToString:[SetCard validShadings][0]]) {        // solid
+        // do nothing
+    } else if ([card.shading isEqualToString:[SetCard validShadings][1]]) { // striped
+        [str_result addAttribute:NSStrokeWidthAttributeName
+                           value:@-3
+                           range:NSMakeRange(0, [str_result length])];
+    } else {                                                                // open
+        [str_result addAttribute:NSStrokeWidthAttributeName
+                           value:@3
+                           range:NSMakeRange(0, [str_result length])];
+        [str_result setAttributes:@{NSStrokeColorAttributeName:_color}
+                            range:NSMakeRange(0, [str_result length])];
+    }
+    return str_result;
+}
+
 @end

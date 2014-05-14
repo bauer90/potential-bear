@@ -31,7 +31,6 @@
 // using ▲ ● ■ to represent symbols.
 @implementation SetCard
 
-
 + (NSArray *)validSymbols
 {
     return @[@"▲", @"●", @"■"];

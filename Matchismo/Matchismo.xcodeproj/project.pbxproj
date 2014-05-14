@@ -126,8 +126,6 @@
 				E15DDB2B18F9502400D27851 /* CardMatchingGame.m */,
 				E104085218FA9F330077A101 /* playingRecord.h */,
 				E104085318FA9F330077A101 /* playingRecord.m */,
-				E1E61E27192260A4006F5809 /* SetCardGameViewController.h */,
-				E1E61E28192260A4006F5809 /* SetCardGameViewController.m */,
 				E1E61E2A1922810A006F5809 /* SetCardDeck.h */,
 				E1E61E2B1922810A006F5809 /* SetCardDeck.m */,
 			);
@@ -173,6 +171,8 @@
 				E198DA1618D8A4CE00116796 /* ViewController.m */,
 				E114CA1F191BF07C00A7BBE9 /* PlayingCardGameViewController.h */,
 				E114CA20191BF07C00A7BBE9 /* PlayingCardGameViewController.m */,
+				E1E61E27192260A4006F5809 /* SetCardGameViewController.h */,
+				E1E61E28192260A4006F5809 /* SetCardGameViewController.m */,
 				E198DA1818D8A4CE00116796 /* Images.xcassets */,
 				E198DA0718D8A4CD00116796 /* Supporting Files */,
 			);

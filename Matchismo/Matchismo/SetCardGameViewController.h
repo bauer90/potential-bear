@@ -7,7 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "SetCard.h"
 
 @interface SetCardGameViewController : ViewController
+
+- (NSAttributedString *)titleForCard:(SetCard *)card;
 
 @end
