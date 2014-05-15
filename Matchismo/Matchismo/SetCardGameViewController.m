@@ -46,6 +46,7 @@
 }
 */
 
+// returns a card's representation in NSAttributedString.
 - (NSAttributedString *)titleForCard:(SetCard *)card
 {
     // symbol and number

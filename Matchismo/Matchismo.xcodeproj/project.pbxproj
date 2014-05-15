@@ -12,6 +12,7 @@
 		E114CA21191BF07C00A7BBE9 /* PlayingCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E114CA20191BF07C00A7BBE9 /* PlayingCardGameViewController.m */; };
 		E11E993618E6016A0046D0B5 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = E11E993518E6016A0046D0B5 /* Deck.m */; };
 		E11E993918E607F90046D0B5 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E11E993818E607F90046D0B5 /* PlayingCard.m */; };
+		E145476019247F6F0032185C /* GameStats.m in Sources */ = {isa = PBXBuildFile; fileRef = E145475F19247F6F0032185C /* GameStats.m */; };
 		E15DDB2C18F9502400D27851 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E15DDB2B18F9502400D27851 /* CardMatchingGame.m */; };
 		E198DA0118D8A4CD00116796 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E198DA0018D8A4CD00116796 /* Foundation.framework */; };
 		E198DA0318D8A4CD00116796 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E198DA0218D8A4CD00116796 /* CoreGraphics.framework */; };
@@ -54,6 +55,8 @@
 		E11E993518E6016A0046D0B5 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Deck.m; path = Model/Deck.m; sourceTree = "<group>"; };
 		E11E993718E607F90046D0B5 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCard.h; path = Model/PlayingCard.h; sourceTree = "<group>"; };
 		E11E993818E607F90046D0B5 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCard.m; path = Model/PlayingCard.m; sourceTree = "<group>"; };
+		E145475E19247F6F0032185C /* GameStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameStats.h; path = Model/GameStats.h; sourceTree = "<group>"; };
+		E145475F19247F6F0032185C /* GameStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameStats.m; path = Model/GameStats.m; sourceTree = "<group>"; };
 		E15DDB2A18F9502400D27851 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		E15DDB2B18F9502400D27851 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
 		E198D9FD18D8A4CD00116796 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,24 +115,56 @@
 		E112D6A518E0B65800305EFB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E112D6A218E0B61900305EFB /* Card.h */,
-				E112D6A318E0B61900305EFB /* Card.m */,
-				E11E993718E607F90046D0B5 /* PlayingCard.h */,
-				E11E993818E607F90046D0B5 /* PlayingCard.m */,
-				E1E61E2419220909006F5809 /* SetCard.h */,
-				E1E61E2519220909006F5809 /* SetCard.m */,
-				E11E993418E6016A0046D0B5 /* Deck.h */,
-				E11E993518E6016A0046D0B5 /* Deck.m */,
-				E1DB882418E614CF00D922A3 /* PlayingCardDeck.h */,
-				E1DB882518E614CF00D922A3 /* PlayingCardDeck.m */,
+				E182D67E1923118900C28DD0 /* Generals */,
+				E182D67C1923112E00C28DD0 /* PlayingCard */,
+				E182D67D1923115700C28DD0 /* SetCard */,
 				E15DDB2A18F9502400D27851 /* CardMatchingGame.h */,
 				E15DDB2B18F9502400D27851 /* CardMatchingGame.m */,
-				E104085218FA9F330077A101 /* playingRecord.h */,
-				E104085318FA9F330077A101 /* playingRecord.m */,
-				E1E61E2A1922810A006F5809 /* SetCardDeck.h */,
-				E1E61E2B1922810A006F5809 /* SetCardDeck.m */,
+				E145475E19247F6F0032185C /* GameStats.h */,
+				E145475F19247F6F0032185C /* GameStats.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		E182D67C1923112E00C28DD0 /* PlayingCard */ = {
+			isa = PBXGroup;
+			children = (
+				E11E993718E607F90046D0B5 /* PlayingCard.h */,
+				E11E993818E607F90046D0B5 /* PlayingCard.m */,
+				E1DB882418E614CF00D922A3 /* PlayingCardDeck.h */,
+				E1DB882518E614CF00D922A3 /* PlayingCardDeck.m */,
+				E114CA1F191BF07C00A7BBE9 /* PlayingCardGameViewController.h */,
+				E114CA20191BF07C00A7BBE9 /* PlayingCardGameViewController.m */,
+			);
+			name = PlayingCard;
+			sourceTree = "<group>";
+		};
+		E182D67D1923115700C28DD0 /* SetCard */ = {
+			isa = PBXGroup;
+			children = (
+				E1E61E2419220909006F5809 /* SetCard.h */,
+				E1E61E2519220909006F5809 /* SetCard.m */,
+				E1E61E2A1922810A006F5809 /* SetCardDeck.h */,
+				E1E61E2B1922810A006F5809 /* SetCardDeck.m */,
+				E1E61E27192260A4006F5809 /* SetCardGameViewController.h */,
+				E1E61E28192260A4006F5809 /* SetCardGameViewController.m */,
+			);
+			name = SetCard;
+			sourceTree = "<group>";
+		};
+		E182D67E1923118900C28DD0 /* Generals */ = {
+			isa = PBXGroup;
+			children = (
+				E112D6A218E0B61900305EFB /* Card.h */,
+				E112D6A318E0B61900305EFB /* Card.m */,
+				E11E993418E6016A0046D0B5 /* Deck.h */,
+				E11E993518E6016A0046D0B5 /* Deck.m */,
+				E104085218FA9F330077A101 /* playingRecord.h */,
+				E104085318FA9F330077A101 /* playingRecord.m */,
+				E198DA1518D8A4CE00116796 /* ViewController.h */,
+				E198DA1618D8A4CE00116796 /* ViewController.m */,
+			);
+			name = Generals;
 			sourceTree = "<group>";
 		};
 		E198D9F418D8A4CD00116796 = {
@@ -167,12 +202,6 @@
 			children = (
 				E198DA1218D8A4CE00116796 /* Main.storyboard */,
 				E112D6A518E0B65800305EFB /* Model */,
-				E198DA1518D8A4CE00116796 /* ViewController.h */,
-				E198DA1618D8A4CE00116796 /* ViewController.m */,
-				E114CA1F191BF07C00A7BBE9 /* PlayingCardGameViewController.h */,
-				E114CA20191BF07C00A7BBE9 /* PlayingCardGameViewController.m */,
-				E1E61E27192260A4006F5809 /* SetCardGameViewController.h */,
-				E1E61E28192260A4006F5809 /* SetCardGameViewController.m */,
 				E198DA1818D8A4CE00116796 /* Images.xcassets */,
 				E198DA0718D8A4CD00116796 /* Supporting Files */,
 			);
@@ -320,6 +349,7 @@
 				E1DB882618E614CF00D922A3 /* PlayingCardDeck.m in Sources */,
 				E198DA0D18D8A4CD00116796 /* main.m in Sources */,
 				E112D6A418E0B61900305EFB /* Card.m in Sources */,
+				E145476019247F6F0032185C /* GameStats.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
