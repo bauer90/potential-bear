@@ -12,9 +12,9 @@
 
 // the four properties that define a card
 @property (nonatomic) NSUInteger number;
-@property (nonatomic, strong) NSString *shading;
-@property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *symbol;
+@property (nonatomic, strong) NSString *color;
+@property (nonatomic, strong) NSString *shading;
 
 + (NSArray *)validShadings;
 + (NSArray *)validColors;

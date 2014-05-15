@@ -7,6 +7,8 @@
 //
 
 #import "SetCardGameViewController.h"
+#import "SetCard.h"
+#import "SetCardDeck.h"
 
 @interface SetCardGameViewController ()
 
@@ -46,9 +48,12 @@
 }
 */
 
+
+
 // returns a card's representation in NSAttributedString.
-- (NSAttributedString *)titleForCard:(SetCard *)card
++ (NSAttributedString *)titleForCard:(SetCard *)card
 {
+    if (card == nil) return nil;
     // symbol and number
     NSMutableString *str = [[NSMutableString alloc] init];
     for (int i = 0; i < card.number; i++) {
@@ -84,7 +89,7 @@
         [str_result setAttributes:@{NSStrokeColorAttributeName:_color}
                             range:NSMakeRange(0, [str_result length])];
     }
-    return str_result;
+    return (NSAttributedString *)str_result;
 }
 
 @end

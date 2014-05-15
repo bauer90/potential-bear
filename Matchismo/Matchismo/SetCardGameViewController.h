@@ -11,6 +11,6 @@
 
 @interface SetCardGameViewController : ViewController
 
-- (NSAttributedString *)titleForCard:(SetCard *)card;
++ (NSAttributedString *)titleForCard:(SetCard *)card;
 
 @end
