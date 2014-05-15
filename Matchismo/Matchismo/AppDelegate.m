@@ -7,12 +7,17 @@
 //
 
 #import "AppDelegate.h"
-
+#import "TabBarViewController.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    UITabBarController *tbc = (UITabBarController *)self.window.rootViewController;
+    NSArray *arr = tbc.viewControllers;
+    UITabBarItem *item0 = arr[0], *item1 = arr[1];
+    item0.title = @"Matchismo";
+    item1.title = @"Set";
     return YES;
 }
 							
