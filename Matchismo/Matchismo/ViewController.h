@@ -15,14 +15,12 @@
 @interface ViewController : UIViewController
 
 @property (nonatomic, strong) CardMatchingGame *game;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 
 // protected
 // for subclasses
 - (Deck *)createDeck; // abstract
-- (void)updateUI;
-- (NSString *)titleForCard:(Card *)card;
-- (UIImage *)backgroundImageForCard:(Card *)card;
+- (void)updateUI; // abstract
+- (NSString *)titleForCard:(Card *)card; // abstract
+- (UIImage *)backgroundImageForCard:(Card *)card; // abstract
 @end

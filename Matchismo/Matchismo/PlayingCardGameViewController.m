@@ -14,40 +14,33 @@
 
 @end
 
+
 @implementation PlayingCardGameViewController
+@synthesize game = _game;
+
+- (CardMatchingGame *)game
+{
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                          usingDeck:[self createDeck]];
+    return _game;
+}
 
 - (Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
 }
 
-- (NSString *):(int)index
+- (IBAction)resetGame:(UIButton *)sender
 {
-    if (index == 0)
-        return @"New Game Started!";
-    NSString *moveString = @"", *scoreString = @"", *result = @"";
-    playingRecord *rec = self.game.playingHistory[index - 1];
-    if (rec.move == MATCH)
-        moveString = @"YEAH! A Match for: ";
-    else if (rec.move == MISMATCH)
-        moveString = @"BOOO! A Mismatch for: ";
-    else
-        moveString = @"Currently Selecting: ";
-    result = moveString;
-    for (PlayingCard *card in rec.cards)
-        result = [result stringByAppendingFormat:@" %@ ", card.contents];
-    if (rec.score == 0)
-        scoreString = @", and score not changed.";
-    else if (rec.score == 1)
-        scoreString = [NSString stringWithFormat:@", and 1 point gained!"];
-    else if (rec.score == -1)
-        scoreString = [NSString stringWithFormat:@", and 1 point lost."];
-    else if (rec.score > 0)
-        scoreString = [NSString stringWithFormat:@", and %d points gained!", rec.score];
-    else // => rec.score < 0
-        scoreString = [NSString stringWithFormat:@", and %d points lost.", -rec.score];
-    result = [result stringByAppendingString:scoreString];
-    return result;
+    self.game = nil;
+    [self updateUI];
+}
+
+- (IBAction)touchCardButton:(UIButton*)sender
+{
+    int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+    [self.game chooseCardAtIndex:chosenButtonIndex];
+    [self updateUI];
 }
 
 - (void)updateUI

@@ -19,27 +19,12 @@
 
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                          usingDeck:[self createDeck]];
-    return _game;
+    return nil;
 }
 
-- (Deck *)createDeck // abstract method (has to be made public)
+- (Deck *)createDeck
 {
-    return nil; //making ViewController class 'abstract'. (there's no explicit 'abstract' class in obj-C. But 'abstract' can be done this way)
-}
-
-- (IBAction)resetGame:(UIButton *)sender
-{
-    self.game = nil;
-    [self updateUI];
-}
-
-- (IBAction)touchCardButton:(UIButton*)sender
-{
-    int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
-    [self.game chooseCardAtIndex:chosenButtonIndex];
-    [self updateUI];
+    return nil;
 }
 
 - (void)updateUI

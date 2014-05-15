@@ -12,6 +12,9 @@
 
 @interface GameStats : NSObject
 
-@property (nonatomic, strong) NSMutableArray *ArrayRecords; // array of playingRecord's.
+@property (nonatomic, strong) NSMutableArray *records; // array of playingRecord's.
+
+
+- (instancetype)init;
 
 @end

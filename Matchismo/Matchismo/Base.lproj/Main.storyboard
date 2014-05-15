@@ -444,25 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="723" y="-110"/>
-        </scene>
-        <!--Set Card Game View Controller-->
-        <scene sceneID="6zB-OV-MLX">
-            <objects>
-                <viewController id="X6V-Hk-k8u" customClass="SetCardGameViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZAL-pe-w5t"/>
-                        <viewControllerLayoutGuide type="bottom" id="Tk4-g2-H3J"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LFS-9s-bnw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u9F-Fl-mcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="688" y="616"/>
+            <point key="canvasLocation" x="294" y="-111"/>
         </scene>
     </scenes>
     <resources>

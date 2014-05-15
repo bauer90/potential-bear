@@ -10,4 +10,7 @@
 
 @interface PlayingCardGameViewController : ViewController
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
 @end
