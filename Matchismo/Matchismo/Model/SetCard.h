@@ -7,6 +7,7 @@
 //
 
 #import "Card.h"
+#define MAX_CARD_NUMBER 4
 
 @interface SetCard : Card
 

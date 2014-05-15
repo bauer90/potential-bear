@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        for (int cardNumber = 1; cardNumber <= 3; cardNumber++) {
+        for (int cardNumber = 1; cardNumber <= MAX_CARD_NUMBER; cardNumber++) {
             for (NSString *cardSymbol in [SetCard validSymbols]) {
                 for (NSString *cardColor in [SetCard validColors]) {
                     for (NSString *cardShading in [SetCard validShadings]) {
@@ -32,5 +32,11 @@
     }
     return self;
 }
+
+- (void) dealThree
+{
+
+}
+
 
 @end

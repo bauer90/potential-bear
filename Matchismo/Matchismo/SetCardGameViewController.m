@@ -49,7 +49,6 @@
 */
 
 
-
 // returns a card's representation in NSAttributedString.
 + (NSAttributedString *)titleForCard:(SetCard *)card
 {
@@ -57,8 +56,8 @@
     // symbol and number
     NSMutableString *str = [[NSMutableString alloc] init];
     for (int i = 0; i < card.number; i++) {
+        [str appendString:@"\n"];
         [str appendString:card.symbol];
-        [str appendString:@" "];
     }
 
     // add color attribute

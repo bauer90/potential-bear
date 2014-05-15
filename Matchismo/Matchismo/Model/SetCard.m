@@ -48,7 +48,7 @@
 
 - (void)setNumber:(NSUInteger)number
 {
-    if (number <= 3 && number >= 1) _number = number;
+    if (number <= MAX_CARD_NUMBER && number >= 1) _number = number;
 }
 
 - (void)setShading:(NSString *)shading
