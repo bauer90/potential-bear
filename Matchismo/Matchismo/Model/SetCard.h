@@ -7,7 +7,7 @@
 //
 
 #import "Card.h"
-#define MAX_CARD_NUMBER 4
+#define MAX_CARD_NUMBER 3
 
 @interface SetCard : Card
 
@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *symbol;
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *shading;
+@property (nonatomic) BOOL alreadyAppeared;
 
 + (NSArray *)validShadings;
 + (NSArray *)validColors;

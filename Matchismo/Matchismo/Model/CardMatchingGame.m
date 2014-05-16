@@ -57,12 +57,17 @@ static const int COST_TO_CHOOSE = 1;
     return self;
 }
 
-
 - (BOOL)isNewGame
 {
     return self.stepCount == 0;
 }
 
+- (NSArray *)drawThree
+{
+    if ([self.cards[0] isKindOfClass:[SetCard class]]) {
+        
+    }
+}
 
 - (void)addToPlayingHistoryWithMove:(NSUInteger)moveForThisClick
                            andCards:(NSArray *)listOfCards

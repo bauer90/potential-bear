@@ -24,6 +24,7 @@
                         card.symbol = cardSymbol;
                         card.color = cardColor;
                         card.shading = cardShading;
+                        card.alreadyAppeared = FALSE;
                         [self addCard:card];
                     }
                 }
@@ -32,11 +33,5 @@
     }
     return self;
 }
-
-- (void) dealThree
-{
-
-}
-
 
 @end

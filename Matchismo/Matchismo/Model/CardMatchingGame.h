@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayingCard.h"
+#import "SetCard.h"
 #import "PlayingCardDeck.h"
+#import "SetCardDeck.h"
 #import "PlayingRecord.h"
 
 @interface CardMatchingGame : NSObject
@@ -26,6 +28,7 @@
 
 // returns YES if no moves have been made
 - (BOOL)isNewGame;
+
 
 //there is no public setter for this property (readonly) -
 @property (nonatomic, readonly) NSInteger score;

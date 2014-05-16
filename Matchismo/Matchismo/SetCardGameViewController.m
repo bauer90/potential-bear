@@ -6,12 +6,19 @@
 //  Copyright (c) 2014 Erhan Hu. All rights reserved.
 //
 
+/* 
+ * In Set game:
+ */
+
 #import "SetCardGameViewController.h"
 #import "SetCard.h"
 #import "SetCardDeck.h"
 
 @interface SetCardGameViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 
 @end
 
@@ -19,14 +26,21 @@
 
 @synthesize game = _game;
 
+- (IBAction)cardButtonTouched:(UIButton *)sender
+{
+    // todo
+}
+
 - (IBAction)deal3ButtonPushed:(UIButton *)sender
 {
     // todo
 }
 
+// deal all cards at the beginning but only show cards that are
+// unmatched && alreadyAppeared
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:INIT_CARD_NUM
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:(MAX_CARD_NUMBER * [[SetCard validSymbols] count] * [[SetCard validColors] count] * [[SetCard validShadings] count])
                                                           usingDeck:[self createDeck]
                                                       withMatchMode:3];
     return _game;
@@ -42,6 +56,12 @@
     self.game = nil;
     [self updateUI];
 }
+
+- (void)updateUI
+{
+    NSLog(@"SetGame (void)updateUI got called.");
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
