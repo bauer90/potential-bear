@@ -28,27 +28,27 @@
     return 0;
 }
 
-// match for 3-card mode
-// automatically test if 'other[0]' and 'other[1]' are eligible for match-test
-// and returns the score
-- (int)match3:(NSArray *)Cards
-{
-    if ([Cards count] == 2) {
-        PlayingCard *firstCard = (PlayingCard *)(Cards[0]);
-        PlayingCard *secondCard = (PlayingCard *)(Cards[1]);
-        if (self.rank == firstCard.rank && self.rank == secondCard.rank)
-            return  20;
-        else if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit])
-            return 10;
-        else if (self.rank == firstCard.rank || self.rank == secondCard.rank || firstCard.rank == secondCard.rank)
-            return 3;
-        else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit] || [firstCard.suit isEqualToString:secondCard.suit])
-            return 1;
-        else
-            return 0;
-    }
-    return 0;
-}
+//// match for 3-card mode
+//// automatically test if 'other[0]' and 'other[1]' are eligible for match-test
+//// and returns the score
+//- (int)match3:(NSArray *)Cards
+//{
+//    if ([Cards count] == 2) {
+//        PlayingCard *firstCard = (PlayingCard *)(Cards[0]);
+//        PlayingCard *secondCard = (PlayingCard *)(Cards[1]);
+//        if (self.rank == firstCard.rank && self.rank == secondCard.rank)
+//            return  20;
+//        else if ([self.suit isEqualToString:firstCard.suit] && [self.suit isEqualToString:secondCard.suit])
+//            return 10;
+//        else if (self.rank == firstCard.rank || self.rank == secondCard.rank || firstCard.rank == secondCard.rank)
+//            return 3;
+//        else if ([self.suit isEqualToString:firstCard.suit] || [self.suit isEqualToString:secondCard.suit] || [firstCard.suit isEqualToString:secondCard.suit])
+//            return 1;
+//        else
+//            return 0;
+//    }
+//    return 0;
+//}
 
 // returns a list of those in cards (excluding self)
 // that are ready to test for match-ness.

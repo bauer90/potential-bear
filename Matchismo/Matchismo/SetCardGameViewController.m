@@ -11,10 +11,24 @@
 #import "SetCardDeck.h"
 
 @interface SetCardGameViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
 
 @implementation SetCardGameViewController
+
+@synthesize game = _game;
+
+- (IBAction)deal3ButtonPushed:(UIButton *)sender
+{
+    // todo
+}
+
+- (IBAction)resetGame:(UIButton *)sender
+{
+    self.game = nil;
+    [self updateUI];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

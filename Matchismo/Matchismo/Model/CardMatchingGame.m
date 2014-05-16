@@ -87,12 +87,15 @@ static const int COST_TO_CHOOSE = 1;
     self.stepCount++;
     PlayingCard *card = (PlayingCard *)[self cardAtIndex:index];
     NSArray* eligibles = [card UnMatchedAndChosen:self.cards];
+    
     if ([eligibles count] == self.matchMode) { // when there're enough eligibles and an extra is clicked -
         [self unChooselastSelections];
         card.chosen = YES;
         self.score -= MISMATCH_PENALTY;
         [self addToPlayingHistoryWithMove:SELECTING andCards:nil andCard:card andScore:-COST_TO_CHOOSE];
-    } else if ([eligibles count] == (self.matchMode - 1)) { // when there're enough eligibles including this click -
+    }
+    
+    else if ([eligibles count] == (self.matchMode - 1)) { // when there're enough eligibles including this click -
         int matchScore = (self.matchMode == 2) ? [card match:eligibles] : [card match3:eligibles];
         if (matchScore > 0) {
             self.score += matchScore * MATCH_BONUS;
@@ -110,7 +113,9 @@ static const int COST_TO_CHOOSE = 1;
                                  andCards:eligibles
                                   andCard:card
                                  andScore:(matchScore > 0) ? matchScore*MATCH_BONUS : -MISMATCH_PENALTY];
-    } else { // no enough eligibles (including this click) -
+    }
+    
+    else { // no enough eligibles (including this click) -
         if (card.isChosen) {
             card.chosen = NO;
           [self addToPlayingHistoryWithMove:SELECTING

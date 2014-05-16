@@ -8,26 +8,6 @@
 
 #import "SetCard.h"
 
-//// NUMBER
-//const int ONE = 1;
-//const int TWO = 2;
-//const int THREE = 3;
-//
-//// SYMBLE
-//const int SOLID = 0;
-//const int STRIPED = 1;
-//const int OPEN = 2;
-//
-//// SHADING
-//const int DIAMOND = 0;
-//const int SQUIGGLE = 1;
-//const int OVAL = 2;
-//
-//// COLOR
-//const int RED = 0;
-//const int GREEN = 1;
-//const int PURPLE = 2;
-
 // using ▲ ● ■ to represent symbols.
 @implementation SetCard
 
@@ -46,7 +26,7 @@
     return @[@"solid", @"striped", @"open"];
 }
 
-- (void)setNumber:(NSUInteger)number
+- (void)setNumber:(int)number
 {
     if (number <= MAX_CARD_NUMBER && number >= 1) _number = number;
 }
@@ -66,9 +46,62 @@
     if ([[SetCard validSymbols] containsObject:symbol]) _symbol = symbol;
 }
 
-- (NSInteger)match:(NSArray *)cards
+
++ (BOOL)threeStringsEqual:(NSArray *)strings
+{
+    if ([strings count] != 3) return FALSE;
+    return ([strings[0] isEqualToString:strings[1]] && [strings[0] isEqualToString:strings[2]]);
+}
+
++ (BOOL)twoOfThreeEqual:(NSArray *)strings
+{
+    if ([strings count] != 3) return FALSE;
+    return ([strings[0] isEqualToString:strings[1]] || [strings[0] isEqualToString:strings[2]] || [strings[1] isEqualToString:strings[2]]);
+}
+
+- (int)match:(NSArray *)cards
 {
     // todo
+    if ([cards count] != 2) return 0;
+    SetCard *card0 = cards[0], *card1 = cards[1];
+    
+    // test if all or any two of them have the same 'number'
+    if ((self.number == card0.number) && (self.number == card1.number)) {
+        return 10;
+    } else if ((self.number == card0.number) || (self.number == card1.number) || (card0.number == card1.number)) {
+        return 5;
+    } else {
+        // do nothing
+    }
+    
+    // test if all or any two of them have the same 'symbol'
+    if ([SetCard threeStringsEqual:@[self.symbol, card0.symbol, card1.symbol]]) {
+        return 10;
+    } else if ([SetCard twoOfThreeEqual:@[self.symbol, card0.symbol, card1.symbol]]) {
+        return 5;
+    } else {
+        // do nothing
+    }
+    
+    // test if all or any two of them have the same 'color'
+    if ([SetCard threeStringsEqual:@[self.color, card0.color, card1.color]]) {
+        return 10;
+    } else if ([SetCard twoOfThreeEqual:@[self.color, card0.color, card1.color]]) {
+        return 5;
+    } else {
+        // do nothing
+    }
+
+    // test if all or any two of them have the same 'shading'
+    if ([SetCard threeStringsEqual:@[self.shading, card0.shading, card1.shading]]) {
+        return 10;
+    } else if ([SetCard twoOfThreeEqual:@[self.shading, card0.shading, card1.shading]]) {
+        return 5;
+    } else {
+        // do nothing
+    }
+    
+    // at this point no match found.
     return 0;
 }
 

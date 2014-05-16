@@ -12,7 +12,7 @@
 @interface SetCard : Card
 
 // the four properties that define a card
-@property (nonatomic) NSUInteger number;
+@property (nonatomic) int number;
 @property (nonatomic, strong) NSString *symbol;
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *shading;
@@ -21,6 +21,6 @@
 + (NSArray *)validColors;
 + (NSArray *)validSymbols;
 
-- (NSInteger)match:(NSArray *)cards;
+- (int)match:(NSArray *)cards;
 
 @end

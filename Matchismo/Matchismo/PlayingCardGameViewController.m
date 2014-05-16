@@ -11,7 +11,8 @@
 #import "playingRecord.h"
 
 @interface PlayingCardGameViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @end
 
 
