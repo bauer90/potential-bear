@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SetCard.h"
+#define INIT_CARD_NUM 10
 
 @interface SetCardGameViewController : ViewController
 

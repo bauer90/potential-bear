@@ -15,7 +15,8 @@
 
 // designated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count
-                       usingDeck:(Deck *)deck;
+                       usingDeck:(Deck *)deck
+                   withMatchMode:(int)mode;
 
 // called when a card is clicked
 - (void)chooseCardAtIndex:(NSUInteger)index;
@@ -29,8 +30,8 @@
 //there is no public setter for this property (readonly) -
 @property (nonatomic, readonly) NSInteger score;
 
-// is 2 for two-card mode and 3 for three-card mode
-@property (nonatomic) NSInteger matchMode; // 2 or 3
+// is 2 for Matchismo and 3 for Set Game.
+@property (nonatomic) NSInteger matchMode;
 
 // an NSMutableArray of playingRecord
 @property (nonatomic, readonly) NSMutableArray *playingHistory;

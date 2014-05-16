@@ -24,6 +24,19 @@
     // todo
 }
 
+- (CardMatchingGame *)game
+{
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:INIT_CARD_NUM
+                                                          usingDeck:[self createDeck]
+                                                      withMatchMode:3];
+    return _game;
+}
+
+- (Deck *)createDeck
+{
+    return [[SetCardDeck alloc] init];
+}
+
 - (IBAction)resetGame:(UIButton *)sender
 {
     self.game = nil;
@@ -63,6 +76,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 
 // returns a card's representation in NSAttributedString.

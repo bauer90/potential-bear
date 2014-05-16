@@ -35,7 +35,9 @@ static const int COST_TO_CHOOSE = 1;
 }
 
 // designated initializer
-- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
+- (instancetype)initWithCardCount:(NSUInteger)count
+                        usingDeck:(Deck *)deck
+                    withMatchMode:(int)mode
 {
     self = [super init]; //calling NSObject's initializer
     if (self) { // error checking for mem alloc failure
@@ -49,7 +51,7 @@ static const int COST_TO_CHOOSE = 1;
             }
         }
     }
-    self.matchMode = 2;
+    self.matchMode = mode;
     self.score = 0;
     self.stepCount = 0;
     return self;
@@ -82,6 +84,7 @@ static const int COST_TO_CHOOSE = 1;
 }
 
 // what happens when cards[index] is clicked -
+// matchMdoe == 2 for Matchismo; 3 for Set.
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
     self.stepCount++;
