@@ -23,6 +23,8 @@
 - (IBAction)cardButtonTouched:(UIButton *)sender
 {
     // todo
+    int index = [self.cardButtons indexOfObject:sender];
+    
     [self updateUI];
 }
 

@@ -59,10 +59,13 @@
     if (eligibleCount < 3) return nil;
 
     // copy 3 cards to the 'holder'
+    int count = 0;
     for (SetCard *card in self.cards) {
+        if (count >= 3) return holder;
         if (!card.alreadyAppeared) {
             [holder addObject:card];
             card.alreadyAppeared = YES;
+            count++;
         }
     }
 
