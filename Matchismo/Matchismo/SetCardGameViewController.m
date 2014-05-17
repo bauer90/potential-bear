@@ -6,12 +6,7 @@
 //  Copyright (c) 2014 Erhan Hu. All rights reserved.
 //
 
-/* 
- * In Set game:
- */
-
 #import "SetCardGameViewController.h"
-#import "SetCard.h"
 #import "SetCardDeck.h"
 
 @interface SetCardGameViewController ()
@@ -23,26 +18,31 @@
 @end
 
 @implementation SetCardGameViewController
-
 @synthesize game = _game;
 
 - (IBAction)cardButtonTouched:(UIButton *)sender
 {
     // todo
+    [self updateUI];
 }
 
 - (IBAction)deal3ButtonPushed:(UIButton *)sender
 {
-    // todo
+    // if there's enough space for new cards -
+    if ([[self.game cardsShown] count] + 3 <= [self.cardButtons count]) {
+        [self.game deal3];
+    }
 }
 
 // deal all cards at the beginning but only show cards that are
 // unmatched && alreadyAppeared
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:(MAX_CARD_NUMBER * [[SetCard validSymbols] count] * [[SetCard validColors] count] * [[SetCard validShadings] count])
-                                                          usingDeck:[self createDeck]
-                                                      withMatchMode:3];
+    if (!_game) {
+        _game = [[SetCardGame alloc] initWithCardCount:(MAX_CARD_NUMBER * [[SetCard validSymbols] count] * [[SetCard validColors] count] * [[SetCard validShadings] count])
+                                             usingDeck:[self createDeck]];
+        [self.game deal3];
+    }
     return _game;
 }
 
@@ -60,6 +60,17 @@
 - (void)updateUI
 {
     NSLog(@"SetGame (void)updateUI got called.");
+    NSArray *cardsShownThisTime = [self.game cardsShown];
+    if ([cardsShownThisTime count] > [self.cardButtons count]) {
+        NSLog(@"no enough space!");
+        return;
+    }
+    NSLog(@"%d",[cardsShownThisTime count]);
+    for (UIButton *button in self.cardButtons) {
+        int buttonIndex = [self.cardButtons indexOfObject:button];
+        SetCard *card = [cardsShownThisTime objectAtIndex:buttonIndex];
+        [button setTitle:[[SetCardGameViewController titleForCard:card] string] forState:UIControlStateNormal];
+    }
 }
 
 

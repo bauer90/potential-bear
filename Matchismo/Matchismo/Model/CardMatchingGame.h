@@ -17,8 +17,7 @@
 
 // designated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count
-                       usingDeck:(Deck *)deck
-                   withMatchMode:(int)mode;
+                        usingDeck:(Deck *)deck;
 
 // called when a card is clicked
 - (void)chooseCardAtIndex:(NSUInteger)index;
@@ -29,17 +28,18 @@
 // returns YES if no moves have been made
 - (BOOL)isNewGame;
 
-
 //there is no public setter for this property (readonly) -
-@property (nonatomic, readonly) NSInteger score;
+@property (nonatomic) NSInteger score;
 
 // is 2 for Matchismo and 3 for Set Game.
 @property (nonatomic) NSInteger matchMode;
 
 // an NSMutableArray of playingRecord
-@property (nonatomic, readonly) NSMutableArray *playingHistory;
+@property (nonatomic, strong) NSMutableArray *playingHistory;
 
 // how many clicks have been made so far
-@property (nonatomic, readonly) NSInteger stepCount;
+@property (nonatomic) NSInteger stepCount;
+
+@property (nonatomic, strong) NSMutableArray *cards;
 
 @end

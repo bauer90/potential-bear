@@ -9,10 +9,6 @@
 #import "CardMatchingGame.h"
 
 @interface CardMatchingGame()
-@property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, readwrite) NSInteger stepCount;
-@property (nonatomic, strong) NSMutableArray *cards; // of Card
-@property (nonatomic, readwrite) NSMutableArray *playingHistory;
 
 @end
 
@@ -37,36 +33,13 @@ static const int COST_TO_CHOOSE = 1;
 // designated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count
                         usingDeck:(Deck *)deck
-                    withMatchMode:(int)mode
 {
-    self = [super init]; //calling NSObject's initializer
-    if (self) { // error checking for mem alloc failure
-        for (int i = 0; i < count; i++) {
-            Card *card = [deck drawRandomCard];
-            if (card)
-                [self.cards addObject:card];
-            else { // addObject:nil will cause error
-                self = nil;
-                break;
-            }
-        }
-    }
-    self.matchMode = mode;
-    self.score = 0;
-    self.stepCount = 0;
-    return self;
+    return nil;
 }
 
 - (BOOL)isNewGame
 {
     return self.stepCount == 0;
-}
-
-- (NSArray *)drawThree
-{
-    if ([self.cards[0] isKindOfClass:[SetCard class]]) {
-        
-    }
 }
 
 - (void)addToPlayingHistoryWithMove:(NSUInteger)moveForThisClick
@@ -80,6 +53,7 @@ static const int COST_TO_CHOOSE = 1;
                                                gainingScore:score];
     [self.playingHistory addObject:rcd];
 }
+
 
 - (void) unChooselastSelections
 {

@@ -9,6 +9,7 @@
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "playingRecord.h"
+#import "MatchismoGame.h"
 
 @interface PlayingCardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -21,9 +22,8 @@
 
 - (CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                          usingDeck:[self createDeck]
-                                                      withMatchMode:2];
+    if (!_game) _game = [[MatchismoGame alloc] initWithCardCount:[self.cardButtons count]
+                                                       usingDeck:[self createDeck]];
     return _game;
 }
 
