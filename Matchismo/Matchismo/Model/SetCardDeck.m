@@ -25,6 +25,7 @@
                         card.color = cardColor;
                         card.shading = cardShading;
                         card.alreadyAppeared = FALSE;
+                        card.indexInCards = -1;
                         [self addCard:card];
                     }
                 }

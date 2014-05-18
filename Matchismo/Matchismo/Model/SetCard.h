@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *shading;
 @property (nonatomic) BOOL alreadyAppeared;
+@property (nonatomic) int indexInCards;
 
 + (NSArray *)validShadings;
 + (NSArray *)validColors;

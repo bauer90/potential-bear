@@ -10,6 +10,10 @@
 
 @implementation Card
 
+- (NSArray *)UnMatchedAndChosen:(NSArray *)cards
+{
+    return nil;
+}
 
 
 @end

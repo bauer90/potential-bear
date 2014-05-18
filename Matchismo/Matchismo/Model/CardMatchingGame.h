@@ -13,7 +13,18 @@
 #import "SetCardDeck.h"
 #import "PlayingRecord.h"
 
+static const int MISMATCH_PENALTY = 2;
+static const int MATCH_BONUS = 4;
+static const int COST_TO_CHOOSE = 1;
+
+
 @interface CardMatchingGame : NSObject
+
+- (void)addToPlayingHistoryWithMove:(NSUInteger)moveForThisClick
+                           andCards:(NSArray *)listOfCards
+                            andCard:(PlayingCard *)aCard
+                           andScore:(NSInteger)score;
+
 
 // designated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count
@@ -21,6 +32,8 @@
 
 // called when a card is clicked
 - (void)chooseCardAtIndex:(NSUInteger)index;
+
+- (void)unChooseLastSelections;
 
 // returns the card at location = 'index'
 - (Card *)cardAtIndex:(NSUInteger)index;

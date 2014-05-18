@@ -23,10 +23,10 @@
 - (IBAction)cardButtonTouched:(UIButton *)sender
 {
     int index = [self.cardButtons indexOfObject:sender];
+    SetCard *card = (SetCard *)([self.game cardsShown][index]);
     if (index < [[self.game cardsShown] count]) {
         NSLog(@"button %d touched.", index);
-        // todo
-
+        [self.game chooseCardAtIndex:card.indexInCards];
 
         [self updateUI];
     }
@@ -35,9 +35,8 @@
 - (IBAction)deal3ButtonPushed:(UIButton *)sender
 {
     // if there's enough space for new cards -
-    if ([[self.game cardsShown] count] + 3 <= [self.cardButtons count]) {
-        [self.game deal3];
-    }
+    if ([[self.game cardsShown] count] + 3 <= [self.cardButtons count]) [self.game deal3];
+    [self updateUI];
 }
 
 // deal all cards at the beginning but only show cards that are
@@ -51,11 +50,12 @@
     return _game;
 }
 
+// deal 9 cards.
 - (void)newGameSetup
 {
-    [self.game deal3];
-    [self.game deal3];
-    [self.game deal3];
+    for (int i = 0; i < 5; i++) {
+        [self.game deal3];
+    }
 }
 
 - (Deck *)createDeck
@@ -72,12 +72,8 @@
 
 - (void)updateUI
 {
-    NSLog(@"SetGame (void)updateUI got called.");
     NSArray *cardsShownThisTime = [self.game cardsShown];
-    NSLog(@"%d",[cardsShownThisTime count]);
-    for (int i = 0; i < [cardsShownThisTime count]; i++) {
-        NSLog(@"%@",[[SetCardGameViewController titleForCard:(SetCard *)cardsShownThisTime[i]] string]);
-    }
+    NSLog(@"%d cardsShownThisTime",[cardsShownThisTime count]);
     if ([cardsShownThisTime count] > [self.cardButtons count]) {
         NSLog(@"no enough space!");
         return;
@@ -86,8 +82,11 @@
         int buttonIndex = [self.cardButtons indexOfObject:button];
         if (buttonIndex < [cardsShownThisTime count]) {
             SetCard *card = [cardsShownThisTime objectAtIndex:buttonIndex];
-            [button setTitle:[[SetCardGameViewController titleForCard:card] string] forState:UIControlStateNormal];
+           // [button setAttributedTitle:[SetCardGameViewController titleForCard:card] forState:UIControlStateNormal];
+            button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            [button setTitle:card.contents forState:UIControlStateNormal];
         } else {
+            //[button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
             [button setTitle:@"" forState:UIControlStateNormal];
         }
     }
@@ -108,6 +107,7 @@
 {
     [super viewDidLoad];
     [self newGameSetup];
+    [self updateUI];
     // Do any additional setup after loading the view.
 }
 
@@ -137,7 +137,7 @@
     // symbol and number
     NSMutableString *str = [[NSMutableString alloc] init];
     for (int i = 0; i < card.number; i++) {
-        [str appendString:@"\n"];
+        //[str appendString:@" "];
         [str appendString:card.symbol];
     }
 
@@ -166,7 +166,7 @@
         [str_result addAttribute:NSStrokeWidthAttributeName
                            value:@3
                            range:NSMakeRange(0, [str_result length])];
-        [str_result setAttributes:@{NSStrokeColorAttributeName:_color}
+        [str_result setAttributes:@{NSStrokeColorAttributeName:[UIColor blackColor]}
                             range:NSMakeRange(0, [str_result length])];
     }
     return (NSAttributedString *)str_result;

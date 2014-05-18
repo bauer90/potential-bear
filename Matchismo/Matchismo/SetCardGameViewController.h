@@ -10,8 +10,6 @@
 #import "SetCard.h"
 #import "SetCardGame.h"
 
-#define INIT_NUM 6
-
 @interface SetCardGameViewController : ViewController
 
 @property (nonatomic, strong) SetCardGame *game;
