@@ -22,10 +22,14 @@
 
 - (IBAction)cardButtonTouched:(UIButton *)sender
 {
-    // todo
     int index = [self.cardButtons indexOfObject:sender];
-    
-    [self updateUI];
+    if (index < [[self.game cardsShown] count]) {
+        NSLog(@"button %d touched.", index);
+        // todo
+
+
+        [self updateUI];
+    }
 }
 
 - (IBAction)deal3ButtonPushed:(UIButton *)sender
@@ -43,9 +47,15 @@
     if (!_game) {
         _game = [[SetCardGame alloc] initWithCardCount:(MAX_CARD_NUMBER * [[SetCard validSymbols] count] * [[SetCard validColors] count] * [[SetCard validShadings] count])
                                              usingDeck:[self createDeck]];
-        [self.game deal3];
     }
     return _game;
+}
+
+- (void)newGameSetup
+{
+    [self.game deal3];
+    [self.game deal3];
+    [self.game deal3];
 }
 
 - (Deck *)createDeck
@@ -56,6 +66,7 @@
 - (IBAction)resetGame:(UIButton *)sender
 {
     self.game = nil;
+    [self newGameSetup];
     [self updateUI];
 }
 
@@ -63,15 +74,22 @@
 {
     NSLog(@"SetGame (void)updateUI got called.");
     NSArray *cardsShownThisTime = [self.game cardsShown];
+    NSLog(@"%d",[cardsShownThisTime count]);
+    for (int i = 0; i < [cardsShownThisTime count]; i++) {
+        NSLog(@"%@",[[SetCardGameViewController titleForCard:(SetCard *)cardsShownThisTime[i]] string]);
+    }
     if ([cardsShownThisTime count] > [self.cardButtons count]) {
         NSLog(@"no enough space!");
         return;
     }
-    NSLog(@"%d",[cardsShownThisTime count]);
     for (UIButton *button in self.cardButtons) {
         int buttonIndex = [self.cardButtons indexOfObject:button];
-        SetCard *card = [cardsShownThisTime objectAtIndex:buttonIndex];
-        [button setTitle:[[SetCardGameViewController titleForCard:card] string] forState:UIControlStateNormal];
+        if (buttonIndex < [cardsShownThisTime count]) {
+            SetCard *card = [cardsShownThisTime objectAtIndex:buttonIndex];
+            [button setTitle:[[SetCardGameViewController titleForCard:card] string] forState:UIControlStateNormal];
+        } else {
+            [button setTitle:@"" forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -89,7 +107,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self newGameSetup];
     // Do any additional setup after loading the view.
 }
 
