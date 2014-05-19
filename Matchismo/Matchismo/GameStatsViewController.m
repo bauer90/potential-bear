@@ -10,6 +10,7 @@
 #import "CardMatchingGame.h"
 
 @interface GameStatsViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -65,6 +66,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.textView.text = self.textToDisplay;
 }
 
 - (void)didReceiveMemoryWarning

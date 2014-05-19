@@ -13,7 +13,7 @@
 
 // draw 3 cards and mark them 'alreadyAppeared'
 // return nil if there're no enough such cards.
-- (NSArray *)deal3;
+- (void)deal1;
 
 - (NSArray *)cardsShown;
 

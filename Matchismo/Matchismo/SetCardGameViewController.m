@@ -8,6 +8,7 @@
 
 #import "SetCardGameViewController.h"
 #import "SetCardDeck.h"
+#import "GameStatsViewController.h"
 
 @interface SetCardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -20,8 +21,8 @@
 - (IBAction)cardButtonTouched:(UIButton *)sender
 {
     int index = [self.cardButtons indexOfObject:sender];
-    SetCard *card = (SetCard *)([self.game cardsShown][index]);
     if (index < [[self.game cardsShown] count]) {
+        SetCard *card = (SetCard *)([self.game cardsShown][index]);
         [self.game chooseCardAtIndex:card.indexInCards];
         [self updateUI];
     }
@@ -30,8 +31,12 @@
 - (IBAction)deal3ButtonPushed:(UIButton *)sender
 {
     // if there's enough space for new cards -
-    if ([[self.game cardsShown] count] + 3 <= [self.cardButtons count]) [self.game deal3];
-    [self updateUI];
+    int count = 0;
+    while (([[self.game cardsShown] count] < [self.cardButtons count]) && count < 3) {
+        [self.game deal1];
+        count++;
+        [self updateUI];
+    }
 }
 
 // deal all cards at the beginning but only show cards that are
@@ -46,10 +51,10 @@
 }
 
 // deal 9 cards.
-- (void)newGameSetup
+- (void)newGameSetup:(int)numOfCards
 {
-    for (int i = 0; i < 5; i++) {
-        [self.game deal3];
+    for (int i = 0; i < numOfCards; i++) {
+        [self.game deal1];
     }
 }
 
@@ -61,7 +66,7 @@
 - (IBAction)resetGame:(UIButton *)sender
 {
     self.game = nil;
-    [self newGameSetup];
+    [self newGameSetup:10];
     [self updateUI];
 }
 
@@ -82,7 +87,7 @@
             if (card.isChosen) {
                 [button setBackgroundColor:[UIColor grayColor]];
             } else {
-                [button setBackgroundColor:[UIColor clearColor]];
+                [button setBackgroundColor:[UIColor whiteColor]];
             }
         } else {
             //[button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
@@ -108,9 +113,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self newGameSetup];
+    [self newGameSetup:10];
     [self updateUI];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,6 +128,20 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    GameStatsViewController *gsvc = (GameStatsViewController *)[segue destinationViewController];
+    gsvc.textToDisplay = @"";
+}
+
+- (NSString *)generateHistoryInfo
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    for (int i = 0; i < [self.game.playingHistory count]; i++) {
+        playingRecord *rec = (playingRecord *)[self.game.playingHistory objectAtIndex:i];
+        [result appendFormat:@"%d", rec.move];
+        
+    }
+
+    return (NSString *)result;
 }
 
 // returns a card's representation in NSAttributedString.
@@ -133,8 +151,7 @@
     // symbol and number
     NSMutableString *str = [[NSMutableString alloc] init];
     for (int i = 0; i < card.number; i++) {
-        [str appendString:@"\n"];
-        [str appendString:card.symbol];
+        [str appendFormat:@"%@\n", card.symbol];
     }
 
     // add color attribute

@@ -8,7 +8,6 @@
 
 #import "SetCard.h"
 
-// using ▲ ● ■ to represent symbols.
 @implementation SetCard
 
 + (NSArray *)validSymbols
@@ -46,71 +45,35 @@
     if ([[SetCard validSymbols] containsObject:symbol]) _symbol = symbol;
 }
 
-
-+ (BOOL)threeStringsEqual:(NSArray *)strings
-{
-    if ([strings count] != 3) return FALSE;
-    return ([strings[0] isEqualToString:strings[1]] && [strings[0] isEqualToString:strings[2]]);
-}
-
-+ (BOOL)twoOfThreeEqual:(NSArray *)strings
-{
-    if ([strings count] != 3) return FALSE;
-    return ([strings[0] isEqualToString:strings[1]] || [strings[0] isEqualToString:strings[2]] || [strings[1] isEqualToString:strings[2]]);
-}
-
 - (int)match:(NSArray *)cards
 {
     // todo
     if ([cards count] != 2) return 0;
     SetCard *card0 = cards[0], *card1 = cards[1];
-    int score = 0;
 
-    // test if all or any two of them have the same 'number'
     if ((self.number == card0.number) && (self.number == card1.number)) {
         return 10;
-    } else if ((self.number == card0.number) || (self.number == card1.number) || (card0.number == card1.number)) {
-        score = 0;
-    } else {
-        // do nothing
     }
-    
-    // test if all or any two of them have the same 'symbol'
-    if ([SetCard threeStringsEqual:@[self.symbol, card0.symbol, card1.symbol]]) {
+    if (([self.symbol isEqualToString:card0.symbol]) && ([self.symbol isEqualToString:card1.symbol])) {
         return 10;
-    } else if ([SetCard twoOfThreeEqual:@[self.symbol, card0.symbol, card1.symbol]]) {
-        score = 0;
-    } else {
-        // do nothing
-    }
-    
-    // test if all or any two of them have the same 'color'
-    if ([SetCard threeStringsEqual:@[self.color, card0.color, card1.color]]) {
-        return 10;
-    } else if ([SetCard twoOfThreeEqual:@[self.color, card0.color, card1.color]]) {
-        score = 0;
-    } else {
-        // do nothing
     }
 
-    // test if all or any two of them have the same 'shading'
-    if ([SetCard threeStringsEqual:@[self.shading, card0.shading, card1.shading]]) {
+    if (([self.color isEqualToString:card0.color]) && ([self.color isEqualToString:card1.color])) {
         return 10;
-    } else if ([SetCard twoOfThreeEqual:@[self.shading, card0.shading, card1.shading]]) {
-        score = 0;
-    } else {
-        // do nothing
     }
-    
+    if (([self.shading isEqualToString:card0.shading]) && ([self.shading isEqualToString:card1.shading])) {
+        return 0;
+    }
+
     // at this point no match found.
-    return score;
+    return 0;
 }
 
 // Leave everything for ViewController.
 // Use AttributedString there.
 - (NSString *)contents
 {
-    return [[NSString alloc] initWithFormat:@"%d\n%@\n%@\n%@", self.number, self.symbol, self.color, self.shading];
+    return nil;
 }
 
 - (NSArray *)UnMatchedAndChosen:(NSArray *)cards

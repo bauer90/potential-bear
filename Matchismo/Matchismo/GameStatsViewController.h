@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GameStatsViewController : UIViewController
-
+@property (nonatomic, strong) NSString *textToDisplay;
 @end

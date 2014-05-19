@@ -55,31 +55,45 @@
 }
 
 
-- (NSArray *)deal3
+//- (void)deal3
+//{
+//    // make sure there are enough such cards
+//    int eligibleCount = 0;
+//    for (SetCard *card in self.cards) {
+//        if (!card.alreadyAppeared) {
+//            eligibleCount++;
+//        }
+//    }
+//    if (eligibleCount > 0) {
+//
+//        // copy 3 cards to the 'holder'
+//        int count = 0;
+//        for (SetCard *card in self.cards) {
+//            if (count >= (eligibleCount > 3 ? 3 : eligibleCount)) break;
+//            if (!card.alreadyAppeared) {
+//                card.alreadyAppeared = YES;
+//                count++;
+//            }
+//        }
+//    }
+//}
+
+- (void)deal1
 {
-    // make sure there are enough such cards
-    NSMutableArray *holder = [[NSMutableArray alloc] init];
     int eligibleCount = 0;
     for (SetCard *card in self.cards) {
         if (!card.alreadyAppeared) {
             eligibleCount++;
         }
     }
-    if (eligibleCount < 3) return nil;
-
-    // copy 3 cards to the 'holder'
-    int count = 0;
-    for (SetCard *card in self.cards) {
-        if (count >= 3) return (NSArray *)holder;
-        if (!card.alreadyAppeared) {
-            [holder addObject:card];
-            card.alreadyAppeared = YES;
-            count++;
+    if (eligibleCount > 0) {
+        for (SetCard *card in self.cards) {
+            if (!card.alreadyAppeared) {
+                card.alreadyAppeared = YES;
+                return;
+            }
         }
     }
-
-    //return the array of those 3 cards.
-    return (NSArray *)holder;
 }
 
 - (void)addToPlayingHistoryWithMove:(NSUInteger)moveForThisClick
