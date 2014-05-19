@@ -64,12 +64,13 @@
     // todo
     if ([cards count] != 2) return 0;
     SetCard *card0 = cards[0], *card1 = cards[1];
-    
+    int score = 0;
+
     // test if all or any two of them have the same 'number'
     if ((self.number == card0.number) && (self.number == card1.number)) {
         return 10;
     } else if ((self.number == card0.number) || (self.number == card1.number) || (card0.number == card1.number)) {
-        return 5;
+        score = 0;
     } else {
         // do nothing
     }
@@ -78,7 +79,7 @@
     if ([SetCard threeStringsEqual:@[self.symbol, card0.symbol, card1.symbol]]) {
         return 10;
     } else if ([SetCard twoOfThreeEqual:@[self.symbol, card0.symbol, card1.symbol]]) {
-        return 5;
+        score = 0;
     } else {
         // do nothing
     }
@@ -87,7 +88,7 @@
     if ([SetCard threeStringsEqual:@[self.color, card0.color, card1.color]]) {
         return 10;
     } else if ([SetCard twoOfThreeEqual:@[self.color, card0.color, card1.color]]) {
-        return 5;
+        score = 0;
     } else {
         // do nothing
     }
@@ -96,13 +97,13 @@
     if ([SetCard threeStringsEqual:@[self.shading, card0.shading, card1.shading]]) {
         return 10;
     } else if ([SetCard twoOfThreeEqual:@[self.shading, card0.shading, card1.shading]]) {
-        return 5;
+        score = 0;
     } else {
         // do nothing
     }
     
     // at this point no match found.
-    return 0;
+    return score;
 }
 
 // Leave everything for ViewController.

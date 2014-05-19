@@ -42,7 +42,7 @@
 
 - (void)addToPlayingHistoryWithMove:(NSUInteger)moveForThisClick
                            andCards:(NSArray *)listOfCards
-                            andCard:(PlayingCard *)aCard
+                            andCard:(id)aCard
                            andScore:(NSInteger)score
 {
     playingRecord *rcd = [[playingRecord alloc]initWithMove:moveForThisClick

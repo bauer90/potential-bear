@@ -10,11 +10,8 @@
 #import "SetCardDeck.h"
 
 @interface SetCardGameViewController ()
-
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-
 @end
 
 @implementation SetCardGameViewController
@@ -25,9 +22,7 @@
     int index = [self.cardButtons indexOfObject:sender];
     SetCard *card = (SetCard *)([self.game cardsShown][index]);
     if (index < [[self.game cardsShown] count]) {
-        NSLog(@"button %d touched.", index);
         [self.game chooseCardAtIndex:card.indexInCards];
-
         [self updateUI];
     }
 }
@@ -73,7 +68,6 @@
 - (void)updateUI
 {
     NSArray *cardsShownThisTime = [self.game cardsShown];
-    NSLog(@"%d cardsShownThisTime",[cardsShownThisTime count]);
     if ([cardsShownThisTime count] > [self.cardButtons count]) {
         NSLog(@"no enough space!");
         return;
@@ -84,12 +78,20 @@
             SetCard *card = [cardsShownThisTime objectAtIndex:buttonIndex];
            // [button setAttributedTitle:[SetCardGameViewController titleForCard:card] forState:UIControlStateNormal];
             button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            [button setTitle:card.contents forState:UIControlStateNormal];
+            [button setAttributedTitle:[SetCardGameViewController titleForCard:card] forState:UIControlStateNormal];
+            if (card.isChosen) {
+                [button setBackgroundColor:[UIColor grayColor]];
+            } else {
+                [button setBackgroundColor:[UIColor clearColor]];
+            }
         } else {
             //[button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
-            [button setTitle:@"" forState:UIControlStateNormal];
+            [button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
+            [button setBackgroundColor:[UIColor clearColor]];
+
         }
     }
+    self.scoreLabel.text = [[NSString alloc] initWithFormat:@"Score: %d", self.game.score];
 }
 
 
@@ -117,27 +119,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
-
-
 
 // returns a card's representation in NSAttributedString.
 + (NSAttributedString *)titleForCard:(SetCard *)card
 {
-    if (card == nil) return nil;
+    if (card == nil) return [[NSAttributedString alloc] init];
     // symbol and number
     NSMutableString *str = [[NSMutableString alloc] init];
     for (int i = 0; i < card.number; i++) {
-        //[str appendString:@" "];
+        [str appendString:@"\n"];
         [str appendString:card.symbol];
     }
 

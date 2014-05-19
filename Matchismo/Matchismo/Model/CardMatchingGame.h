@@ -22,7 +22,7 @@ static const int COST_TO_CHOOSE = 1;
 
 - (void)addToPlayingHistoryWithMove:(NSUInteger)moveForThisClick
                            andCards:(NSArray *)listOfCards
-                            andCard:(PlayingCard *)aCard
+                            andCard:(id)aCard
                            andScore:(NSInteger)score;
 
 

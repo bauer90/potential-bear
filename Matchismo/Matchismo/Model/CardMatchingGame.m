@@ -41,7 +41,7 @@
 
 - (void)addToPlayingHistoryWithMove:(NSUInteger)moveForThisClick
                            andCards:(NSArray *)listOfCards
-                            andCard:(PlayingCard *)aCard
+                            andCard:(id)aCard
                            andScore:(NSInteger)score
 {
     return;

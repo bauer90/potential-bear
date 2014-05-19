@@ -18,7 +18,7 @@
 
 - (instancetype) initWithMove:(NSUInteger)theMove
                      andCards:(NSArray *)theCards
-                      andCard:(PlayingCard *)theCard
+                      andCard:(id)theCard
                  gainingScore:(NSUInteger)theScore
 {
     self = [super init];
