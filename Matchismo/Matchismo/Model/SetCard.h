@@ -22,7 +22,6 @@
 + (NSArray *)validShadings;
 + (NSArray *)validColors;
 + (NSArray *)validSymbols;
-
 - (int)match:(NSArray *)cards;
 
 @end

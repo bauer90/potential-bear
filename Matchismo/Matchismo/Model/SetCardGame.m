@@ -56,18 +56,10 @@
 
 - (void)deal1
 {
-    int eligibleCount = 0;
     for (SetCard *card in self.cards) {
         if (!card.alreadyAppeared) {
-            eligibleCount++;
-        }
-    }
-    if (eligibleCount > 0) {
-        for (SetCard *card in self.cards) {
-            if (!card.alreadyAppeared) {
-                card.alreadyAppeared = YES;
-                return;
-            }
+            card.alreadyAppeared = YES;
+            return;
         }
     }
 }
@@ -83,7 +75,6 @@
                                                gainingScore:score];
     [self.playingHistory addObject:rcd];
 }
-
 
 - (void)chooseCardAtIndex:(NSUInteger)index
 {
@@ -136,7 +127,5 @@
         }
     }
 }
-
-
 
 @end

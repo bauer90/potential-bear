@@ -97,7 +97,6 @@
     self.scoreLabel.text = [[NSString alloc] initWithFormat:@"Score: %d", self.game.score];
 }
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

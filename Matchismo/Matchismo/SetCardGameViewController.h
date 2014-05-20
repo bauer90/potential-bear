@@ -16,5 +16,4 @@
 
 + (NSAttributedString *)titleForCard:(SetCard *)card;
 
-
 @end
