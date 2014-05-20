@@ -51,7 +51,7 @@
 }
 
 // deal 9 cards.
-- (void)newGameSetup:(int)numOfCards
+- (void)newGameSetupWithCards:(int)numOfCards
 {
     for (int i = 0; i < numOfCards; i++) {
         [self.game deal1];
@@ -66,7 +66,7 @@
 - (IBAction)resetGame:(UIButton *)sender
 {
     self.game = nil;
-    [self newGameSetup:10];
+    [self newGameSetupWithCards:10];
     [self updateUI];
 }
 
@@ -81,7 +81,6 @@
         int buttonIndex = [self.cardButtons indexOfObject:button];
         if (buttonIndex < [cardsShownThisTime count]) {
             SetCard *card = [cardsShownThisTime objectAtIndex:buttonIndex];
-           // [button setAttributedTitle:[SetCardGameViewController titleForCard:card] forState:UIControlStateNormal];
             button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
             [button setAttributedTitle:[SetCardGameViewController titleForCard:card] forState:UIControlStateNormal];
             if (card.isChosen) {
@@ -90,7 +89,6 @@
                 [button setBackgroundColor:[UIColor whiteColor]];
             }
         } else {
-            //[button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
             [button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
             [button setBackgroundColor:[UIColor clearColor]];
 
@@ -113,7 +111,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self newGameSetup:10];
+    [self newGameSetupWithCards:10];
     [self updateUI];
 }
 
@@ -129,7 +127,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     GameStatsViewController *gsvc = (GameStatsViewController *)[segue destinationViewController];
-    gsvc.textToDisplay = @"";
+    gsvc.textToDisplay = [self generateHistoryInfo];
 }
 
 - (NSString *)generateHistoryInfo
@@ -137,11 +135,44 @@
     NSMutableString *result = [[NSMutableString alloc] init];
     for (int i = 0; i < [self.game.playingHistory count]; i++) {
         playingRecord *rec = (playingRecord *)[self.game.playingHistory objectAtIndex:i];
-        [result appendFormat:@"%d", rec.move];
-        
+        [result appendString:[SetCardGameViewController generateSingleMovementInfoFromRecordEntry:rec]];
+        [result appendString:@"\n\n"];
     }
 
     return (NSString *)result;
+}
+
++ (NSString *)generateSingleMovementInfoFromRecordEntry:(playingRecord *)record
+{
+    NSString *moveString = nil, *scoreString = nil;
+    NSMutableString *result = [[NSMutableString alloc] init];
+
+    // type of move
+    if (record.move == MATCH)
+        moveString = @"YEAH! A Match for: ";
+    else if (record.move == MISMATCH)
+        moveString = @"BOOO! A Mismatch for: ";
+    else
+        moveString = @"Currently Selecting: ";
+
+    [result appendString:moveString];
+
+    // the cards
+    for (SetCard *card in record.cards)
+        [result appendFormat:@" %@ ", [[SetCardGameViewController titleForCard:card] string]];
+
+    // score earned this time (positive or negative)
+    if (record.score == 0)
+        scoreString = @" and score not changed.";
+    else if (record.score > 0)
+        scoreString = [NSString stringWithFormat:@" and %d points gained!", record.score];
+    else
+        scoreString = [NSString stringWithFormat:@" and %d points lost.", -record.score];
+
+    [result appendString:scoreString];
+    
+    return result;
+
 }
 
 // returns a card's representation in NSAttributedString.
@@ -151,7 +182,7 @@
     // symbol and number
     NSMutableString *str = [[NSMutableString alloc] init];
     for (int i = 0; i < card.number; i++) {
-        [str appendFormat:@"%@\n", card.symbol];
+        [str appendFormat:@"%@", card.symbol];
     }
 
     // add color attribute

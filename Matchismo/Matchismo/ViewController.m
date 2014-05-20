@@ -42,4 +42,9 @@
     return nil;
 }
 
+- (NSString *)generateHistoryInfo
+{
+    return nil;
+}
+
 @end
