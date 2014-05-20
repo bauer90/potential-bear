@@ -47,7 +47,6 @@
 
 - (int)match:(NSArray *)cards
 {
-    // todo
     if ([cards count] != 2) return 0;
     SetCard *card0 = cards[0], *card1 = cards[1];
 
@@ -57,14 +56,12 @@
     if (([self.symbol isEqualToString:card0.symbol]) && ([self.symbol isEqualToString:card1.symbol])) {
         return 10;
     }
-
     if (([self.color isEqualToString:card0.color]) && ([self.color isEqualToString:card1.color])) {
         return 10;
     }
     if (([self.shading isEqualToString:card0.shading]) && ([self.shading isEqualToString:card1.shading])) {
         return 0;
     }
-
     // at this point no match found.
     return 0;
 }
