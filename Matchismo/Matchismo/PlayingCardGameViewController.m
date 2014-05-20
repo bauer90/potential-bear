@@ -49,11 +49,8 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     GameStatsViewController *gsvc = (GameStatsViewController *)[segue destinationViewController];
     gsvc.textToDisplay = [self generateHistoryInfo];
-
 }
 
 - (void)updateUI
@@ -79,14 +76,12 @@
         [result appendString:@"\n\n"];
     }
     return result;
-    
 }
 
 + (NSString *)generateSingleMovementInfoFromRecordEntry:(playingRecord *)record
 {
     NSString *moveString = nil, *scoreString = nil;
     NSMutableString *result = [[NSMutableString alloc] init];
-
     // type of move
     if (record.move == MATCH)
         moveString = @"YEAH! A Match for: ";
@@ -94,13 +89,10 @@
         moveString = @"BOOO! A Mismatch for: ";
     else
         moveString = @"Currently Selecting: ";
-
     [result appendString:moveString];
-
     // the cards
     for (PlayingCard *card in record.cards)
         [result appendFormat:@" %@ ", card.contents];
-
     // score earned this time (positive or negative)
     if (record.score == 0)
         scoreString = @" and score not changed.";
@@ -108,9 +100,7 @@
         scoreString = [NSString stringWithFormat:@" and %d points gained!", record.score];
     else
         scoreString = [NSString stringWithFormat:@" and %d points lost.", -record.score];
-
     [result appendString:scoreString];
-
     return result;
 }
 

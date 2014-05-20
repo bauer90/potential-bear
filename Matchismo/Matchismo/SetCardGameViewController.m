@@ -35,8 +35,8 @@
     while (([[self.game cardsShown] count] < [self.cardButtons count]) && count < 3) {
         [self.game deal1];
         count++;
-        [self updateUI];
     }
+    [self updateUI];
 }
 
 // deal all cards at the beginning but only show cards that are
@@ -73,10 +73,6 @@
 - (void)updateUI
 {
     NSArray *cardsShownThisTime = [self.game cardsShown];
-    if ([cardsShownThisTime count] > [self.cardButtons count]) {
-        NSLog(@"no enough space!");
-        return;
-    }
     for (UIButton *button in self.cardButtons) {
         int buttonIndex = [self.cardButtons indexOfObject:button];
         if (buttonIndex < [cardsShownThisTime count]) {
@@ -91,20 +87,9 @@
         } else {
             [button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
             [button setBackgroundColor:[UIColor clearColor]];
-
         }
     }
     self.scoreLabel.text = [[NSString alloc] initWithFormat:@"Score: %d", self.game.score];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -123,8 +108,6 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     GameStatsViewController *gsvc = (GameStatsViewController *)[segue destinationViewController];
     gsvc.textToDisplay = [self generateHistoryInfo];
 }
@@ -137,7 +120,6 @@
         [result appendString:[SetCardGameViewController generateSingleMovementInfoFromRecordEntry:rec]];
         [result appendString:@"\n\n"];
     }
-
     return (NSString *)result;
 }
 
@@ -145,7 +127,6 @@
 {
     NSString *moveString = nil, *scoreString = nil;
     NSMutableString *result = [[NSMutableString alloc] init];
-
     // type of move
     if (record.move == MATCH)
         moveString = @"YEAH! A Match for: ";
@@ -153,13 +134,10 @@
         moveString = @"BOOO! A Mismatch for: ";
     else
         moveString = @"Currently Selecting: ";
-
     [result appendString:moveString];
-
     // the cards
     for (SetCard *card in record.cards)
         [result appendFormat:@" %@ ", [[SetCardGameViewController titleForCard:card] string]];
-
     // score earned this time (positive or negative)
     if (record.score == 0)
         scoreString = @" and score not changed.";
@@ -167,9 +145,7 @@
         scoreString = [NSString stringWithFormat:@" and %d points gained!", record.score];
     else
         scoreString = [NSString stringWithFormat:@" and %d points lost.", -record.score];
-
     [result appendString:scoreString];
-    
     return result;
 
 }
