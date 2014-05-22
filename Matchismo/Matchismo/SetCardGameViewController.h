@@ -14,6 +14,4 @@
 
 @property (nonatomic, strong) SetCardGame *game;
 
-+ (NSAttributedString *)titleForCard:(SetCard *)card;
-
 @end

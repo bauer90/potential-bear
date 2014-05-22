@@ -53,8 +53,13 @@
 // deal 9 cards.
 - (void)newGameSetupWithCards:(int)numOfCards
 {
-    for (int i = 0; i < numOfCards; i++) {
-        [self.game deal1];
+    if (numOfCards <= [self.cardButtons count]) {
+        for (int i = 0; i < numOfCards; i++) {
+            [self.game deal1];
+        }
+    }
+    for (UIButton *button in self.cardButtons) {
+        button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     }
 }
 
@@ -77,13 +82,11 @@
         int buttonIndex = [self.cardButtons indexOfObject:button];
         if (buttonIndex < [cardsShownThisTime count]) {
             SetCard *card = [cardsShownThisTime objectAtIndex:buttonIndex];
-            button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            [button setAttributedTitle:[SetCardGameViewController titleForCard:card] forState:UIControlStateNormal];
-            if (card.isChosen) {
+            if (card.isChosen)
                 [button setBackgroundColor:[UIColor grayColor]];
-            } else {
+            else
                 [button setBackgroundColor:[UIColor whiteColor]];
-            }
+            [button setAttributedTitle:[SetCardGameViewController titleForCard:card] forState:UIControlStateNormal];
         } else {
             [button setAttributedTitle:[[NSAttributedString alloc] init] forState:UIControlStateNormal];
             [button setBackgroundColor:[UIColor clearColor]];
