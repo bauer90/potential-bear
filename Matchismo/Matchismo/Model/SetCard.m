@@ -73,14 +73,4 @@
     return nil;
 }
 
-- (NSArray *)UnMatchedAndChosen:(NSArray *)cards
-{
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (id card in cards) {
-        SetCard *_card = (SetCard *)card;
-        if (_card.isChosen && !_card.isMatched && card != self) [result addObject:_card];
-    }
-    return (NSArray *)result;
-}
-
 @end

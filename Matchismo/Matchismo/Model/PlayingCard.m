@@ -13,9 +13,6 @@
 
 @synthesize suit = _suit;
 
-// overriding match: of Card, but need no re-declaration
-// automatically test if 'other' is eligible for match-test
-// and returns the score
 - (int)match:(NSArray *)Cards
 {
     if ([Cards count] == 1) {
@@ -26,19 +23,6 @@
             return 2;
     }
     return 0;
-}
-
-// returns a list of those in cards (excluding self)
-// that are ready to test for match-ness.
-// i.e. Chosen but not Matched.
-- (NSArray *)UnMatchedAndChosen:(NSArray *)cards
-{
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (id card in cards) {
-        PlayingCard *_card = (PlayingCard *)card;
-        if (_card.isChosen && !_card.isMatched && card != self) [result addObject:_card];
-    }
-    return (NSArray *)result;
 }
 
 + (NSArray *)validSuits

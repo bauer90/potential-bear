@@ -43,10 +43,8 @@
 // unmatched && alreadyAppeared
 - (CardMatchingGame *)game
 {
-    if (!_game) {
-        _game = [[SetCardGame alloc] initWithCardCount:(MAX_CARD_NUMBER * [[SetCard validSymbols] count] * [[SetCard validColors] count] * [[SetCard validShadings] count])
-                                             usingDeck:[self createDeck]];
-    }
+    if (!_game) _game = [[SetCardGame alloc] initWithCardCount:(MAX_CARD_NUMBER * [[SetCard validSymbols] count] * [[SetCard validColors] count] * [[SetCard validShadings] count])
+                                                     usingDeck:[self createDeck]];
     return _game;
 }
 
@@ -54,12 +52,10 @@
 - (void)newGameSetupWithCards:(int)numOfCards
 {
     if (numOfCards <= [self.cardButtons count]) {
-        for (int i = 0; i < numOfCards; i++) {
+        for (int i = 0; i < numOfCards; i++)
             [self.game deal1];
-        }
-    }
-    for (UIButton *button in self.cardButtons) {
-        button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        for (UIButton *button in self.cardButtons)
+            button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     }
 }
 
@@ -150,7 +146,6 @@
         scoreString = [NSString stringWithFormat:@" and %d points lost.", -record.score];
     [result appendString:scoreString];
     return result;
-
 }
 
 // returns a card's representation in NSAttributedString.
@@ -159,9 +154,8 @@
     if (card == nil) return [[NSAttributedString alloc] init];
     // symbol and number
     NSMutableString *str = [[NSMutableString alloc] init];
-    for (int i = 0; i < card.number; i++) {
+    for (int i = 0; i < card.number; i++)
         [str appendFormat:@"%@", card.symbol];
-    }
 
     // add color attribute
     NSMutableAttributedString *str_result = [[NSMutableAttributedString alloc] initWithString:str];

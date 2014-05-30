@@ -12,8 +12,11 @@
 
 - (NSArray *)UnMatchedAndChosen:(NSArray *)cards
 {
-    return nil;
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (Card *_card in cards) {
+        if (_card.isChosen && !_card.isMatched && _card != self) [result addObject:_card];
+    }
+    return (NSArray *)result;
 }
-
 
 @end

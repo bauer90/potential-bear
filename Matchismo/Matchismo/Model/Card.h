@@ -14,6 +14,10 @@
 @property (nonatomic, getter = isChosen) BOOL chosen;
 @property (nonatomic, getter = isMatched) BOOL matched;
 
+
+// returns a list of those in cards (excluding self)
+// that are ready to test for match-ness.
+// i.e. Chosen but not Matched.
 - (NSArray *)UnMatchedAndChosen:(NSArray *)cards;
 
 @end
