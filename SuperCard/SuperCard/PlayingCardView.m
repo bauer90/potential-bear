@@ -10,9 +10,11 @@
 
 @implementation PlayingCardView
 
+@synthesize faceCardScaleFactor = _faceCardScaleFactor;
+
 #define CORNER_FONT_STANDARD_HEIGHT 180.0
 #define CORNER_RADIUS 12.0
-
+#define DEFAULT_FACE_CARD_SCALE_FACTOR 0.90
 
 #pragma mark - Properties
 - (void)setRank:(NSUInteger)rank
@@ -72,6 +74,37 @@
     UIRectFill(self.bounds);
     [[UIColor blackColor] setStroke];
     [roundedRect stroke];
+    UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit]];
+    if (self.faceUp) {
+        if (faceImage) {
+            CGRect imageRect = CGRectInset(self.bounds,
+                                           self.bounds.size.width * (1.0 - self.faceCardScaleFactor),
+                                           self.bounds.size.height * (1.0 - self.faceCardScaleFactor));
+            [faceImage drawInRect:imageRect];
+        } else {
+            [self drawPips];
+        }
+        [self drawCorners];
+    } else {
+        [[UIImage imageNamed:@"cardback"] drawInRect:self.bounds];
+    }
+}
+
+- (CGFloat)faceCardScaleFactor
+{
+    if (!_faceCardScaleFactor) _faceCardScaleFactor = DEFAULT_FACE_CARD_SCALE_FACTOR;
+    return _faceCardScaleFactor;
+}
+
+- (void)setFaceCardScaleFactor:(CGFloat)faceCardScaleFactor
+{
+    _faceCardScaleFactor = faceCardScaleFactor;
+    [self setNeedsDisplay];
+}
+
+- (void)drawPips
+{
+
 }
 
 - (NSString *)rankAsString
@@ -82,14 +115,19 @@
 - (void)drawCorners
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = UITextAlignmentCenter;
+    //paragraphStyle.alignment = UITextAlignmentCenter;
     UIFont *cornerFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     cornerFont = [cornerFont fontWithSize:cornerFont.pointSize * [self cornerScaleFactor]];
-    NSAttributedString *cornerText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", @"aa", @"bb"]
+    NSAttributedString *cornerText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", [self rankAsString], self.suit]
                                                                      attributes:@{NSFontAttributeName:cornerFont, NSParagraphStyleAttributeName:paragraphStyle}];
     CGRect textBounds;
     textBounds.origin = CGPointMake([self cornerOffset], [self cornerOffset]);
     textBounds.size = [cornerText size];
+    [cornerText drawInRect:textBounds];
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, self.bounds.size.width, self.bounds.size.height);
+    CGContextRotateCTM(context, M_PI);
     [cornerText drawInRect:textBounds];
 }
 

@@ -21,13 +21,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.playingCardView.rank = 13;
-    self.playingCardView.suit = @"♥︎";
+    self.playingCardView.suit = @"♥";
+    self.playingCardView.faceUp = NO;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)swipe:(id)sender {
+    self.playingCardView.faceUp = !self.playingCardView.faceUp;
 }
 
 @end
